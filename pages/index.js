@@ -1,44 +1,53 @@
 import styled from 'styled-components';
-import { Button, Icon } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
+import TopCat from '../components/TopCat';
+import cats from '../cats';
+import { Icon } from 'semantic-ui-react';
 
-const StyledContainer = styled.div`
+const Home = () => {
+  return (
+    <Row>
+      <CatMenuContainer>
+        {cats.map((item, i) => {
+          return (
+            <CatMenu key={i} style={{ marginBottom : i === (cats.length-1) && 0}}>
+              <Title>{item.title}</Title>
+              <div>
+                <Icon name="chevron right" />
+              </div>
+            </CatMenu>
+          );
+        })}
+      </CatMenuContainer>
+    </Row>
+  );
+};
+
+const Row = styled.div`
   display: flex;
-  height: 100vh;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
   align-items: center;
-
-  div {
-    margin: 10px 0 10px 0;
-  }
-
-  .footer {
-    padding: 20px;
-    border-top: solid 1px #aaa;
-  }
+`;
+const CatMenuContainer = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #929292;
+`;
+const CatMenu = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 240px;
+  border-bottom: 1px solid #dad9d9;
+  padding: 12px 8px 12px 24px;
+`;
+const Title = styled.div`
+  /* padding: 12px 8px 12px 24px; */
 `;
 
-const Home = () => (
-  <StyledContainer>
-    <div>
-      <h1>Next.js + Fomantic-UI!</h1>
-    </div>
-    <div>
-      <Button primary>Primary</Button>
-      <Button secondary>Secondary</Button>
-    </div>
-    <div>
-      <Icon name="home" size="big" />
-      <Icon name="star" size="big" />
-      <Icon name="heart" size="big" />
-      <Icon name="ambulance" size="big" />
-      <Icon name="lightbulb" size="big" />
-    </div>
-    <div className="footer">
-      <a href="https://github.com/skydiver/nextjs-semantic/">
-        https://github.com/skydiver/nextjs-semantic/
-      </a>
-    </div>
-  </StyledContainer>
-);
 export default Home;

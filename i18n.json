@@ -1,0 +1,11 @@
+{
+    "locales": ["en", "zh-CN"],
+    "defaultLocale": "en",
+    "pages": {
+      "*": ["home"],
+      "rgx:^/shop" : ["shop"],
+      "rgx:^/consumer" : ["orders"],
+      "rgx:^/consumer/edit-profile" : ["profile"],
+      "rgx:^/checkout" : ["profile"]
+    }
+  }
