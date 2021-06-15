@@ -1,6 +1,8 @@
-const primary = '#4ab976';
+const primary = '#30aabc';
 const lightColor = 'white';
 const darkColor = 'black';
+const lightGreen = "#f2f5f4"
+const red = "#ff614d"
 
 function pickTextColorBasedOnBgColorSimple(bgColor, lightColor, darkColor) {
   var color = bgColor.charAt(0) === '#' ? bgColor.substring(1, 7) : bgColor;
@@ -12,7 +14,8 @@ function pickTextColorBasedOnBgColorSimple(bgColor, lightColor, darkColor) {
 
 const theme = {
   primary,
-  red: '#ff614d',
+  red,
+  lightGreen,
   abovePrimary: pickTextColorBasedOnBgColorSimple(primary, lightColor, darkColor)
 };
 

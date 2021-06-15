@@ -70,7 +70,7 @@ const TopCat = () => {
 
   return (
     <Container>
-      <Row style={{gap: 30}}>
+      <Row style={{ gap: 30 }}>
         {cats.map((cat, i) => {
           return (
             <Cat
@@ -87,7 +87,7 @@ const TopCat = () => {
           <>
             <Button
               compact
-              style={{ backgroundColor: 'white' }}
+              style={{ backgroundColor: 'white', marginRight: 10 }}
               onClick={() => router.push('/sign-up')}>
               {t('signUp')}
             </Button>
@@ -158,12 +158,12 @@ const TopCat = () => {
           </>
         )}
 
-        <Item style={{padding: 0}}>
+        <Item style={{ padding: 0 }}>
           <Dropdown
             // button
             options={locales}
             direction="left"
-            style={{ margin: '0 0px 0 10px'  }}
+            style={{ margin: '0 0px 0 10px' }}
             onChange={changeLocale}
             value={router.locale}
           />
@@ -174,15 +174,17 @@ const TopCat = () => {
 };
 
 const Container = styled.div`
+  z-index:100;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
   gap: 30px;
   width: 100%;
-  padding: 10px;
+  padding: 6px 40px 6px 40px;
   position: fixed;
   top: 0;
+  /* background-color: ${p => p.theme.lightGreen}; */
 `;
 
 const Cat = styled.div`
@@ -203,7 +205,7 @@ const Item = styled.div`
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  border-left: 1px solid #cacaca;
+  /* border-left: 1px solid #cacaca; */
   height: 100%;
   padding: 10px 20px 10px 20px;
   cursor: pointer;

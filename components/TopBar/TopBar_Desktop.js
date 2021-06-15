@@ -19,13 +19,12 @@ const TopBar_Desktop = ({ locales, changeLocale }) => {
   return (
     <>
       {openDropdownMenu && <Dimmer state={openDropdownMenu} close={setOpenDropdownMenu} />}
-
       <Row style={{ cursor: 'pointer' }} onClick={() => router.push('/')}>
         <Image size="mini" src="/logo-p.png" />
-        <h3 style={{ color: '#e8a15f', margin: 0, marginLeft: 10 }}>
+        <h3 style={{ color: '#e19f9d', margin: 0, marginLeft: 10 }}>
           {t('title')}
-          <span style={{ margin: '0 10px 0 10px', color: '#e8a15f' }}> | </span>
-          <span style={{ color: '#30AABC' }}> {t('subTitle')}</span>
+          <span style={{ margin: '0 10px 0 10px', color: '#1ec5af' }}> | </span>
+          <span style={{ color: '#1ec5af' }}> {t('subTitle')}</span>
         </h3>
       </Row>
       <Row>
@@ -43,9 +42,12 @@ const SearchInputWrapper = styled.div`
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  background-color: #f0eded;
+  background-color: #f7f6f6;
   padding:  10px 20px;
   border-radius: 20px;
+  input:focus {
+    outline:none;
+}
 `;
 const SearchInput = styled.input`
   background-color: transparent;

@@ -34,8 +34,9 @@ const CatMenuContainer = styled.div`
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
-  border-radius: 5px;
-  box-shadow: 0 0 10px #929292;
+  /* border-radius: 5px; */
+  box-shadow: 0 0 10px #dddbdb;
+  background-color: white;
 `;
 const CatMenu = styled.div`
   display: flex;

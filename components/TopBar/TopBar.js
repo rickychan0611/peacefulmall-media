@@ -34,7 +34,7 @@ const TopBar = () => {
 
   return (
     <>
-      <Container>
+      <Container isDesktop={isDesktop}>
         {!isDesktop ? (
           <TopBar_Mobile t={t} changeLocale={changeLocale} locales={locales} />
         ) : (
@@ -52,10 +52,11 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 10px;
+  padding: ${p =>  p.isDesktop ? "10px 40px 10px 40px" : "10px 0 10px 0"};
   position: fixed;
-  top: 50px;
+  top: ${p => p.isDesktop ? "42px" : "0px"};
   background-color: white;
+  box-shadow: 0 0 10px #d2e6de;
 `;
 
 export default TopBar;

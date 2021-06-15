@@ -26,6 +26,7 @@ const TopBar = () => {
 const Container = styled.div`
   position: relative;
   width: 100vw;
+  height: 42px;
 `;
 
 const MenuButton = styled.div`

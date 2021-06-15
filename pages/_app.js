@@ -19,9 +19,9 @@ function MyApp({ Component, pageProps }) {
           <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         </Head>
         <Container>
-            {isDesktop && <TopCat />}
-            <TopBar />
-          <Wrapper>
+          {isDesktop && <TopCat />}
+          <TopBar />
+          <Wrapper isDesktop={isDesktop}>
             <Component {...pageProps} />
           </Wrapper>
         </Container>
@@ -36,13 +36,12 @@ const Container = styled.div`
   /* align-items: center; */
   justify-content: center;
   width: 100vw;
-  /* max-width: 1000px; */
 `;
 const Wrapper = styled.div`
   width: 100%;
   max-width: 1000px;
-  padding: 10px;
-  padding-top: 140px;
+  padding: 140px 40px 10px 40px;
+  padding-top: ${p => p.isDesktop ? "140px" : "80px"};
   margin: 0 auto;
 `;
 
