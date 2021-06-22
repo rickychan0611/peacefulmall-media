@@ -47,7 +47,7 @@ const HerbCards = () => {
               <Img src={item.pic} />
               <div>
                 <Title>{item.title}</Title>
-                <Content>{item.content}</Content>
+                <Content className="clamp2">{item.content}</Content>
               </div>
             </Card>
           </>
@@ -78,10 +78,10 @@ const Title = styled.div`
   font-weight: bold;
   font-size: 18px;
   line-height: 28px;
+  margin-bottom: 10px;
 `;
 const Content = styled.div`
-  font-weight: bold;
-  font-size: 14px;
+  font-size: 15px;
   color: grey;
 `;
 

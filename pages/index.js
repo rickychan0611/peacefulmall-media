@@ -49,7 +49,6 @@ const TwoColRow = styled.div`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  padding: 10px 0;
   gap: 20px;
 `;
 export default Home;

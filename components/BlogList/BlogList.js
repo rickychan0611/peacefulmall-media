@@ -80,9 +80,9 @@ const Title = styled.div`
   line-height: 28px;
 `;
 const Content = styled.div`
-  font-weight: bold;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 28px;
+  color: grey;
 `;
 
 export default BlogList;

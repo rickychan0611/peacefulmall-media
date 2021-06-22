@@ -93,8 +93,7 @@ const Name = styled.div`
   margin-bottom: 8px;
 `;
 const Content = styled.div`
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 14px;
   color: grey;
 `;
 

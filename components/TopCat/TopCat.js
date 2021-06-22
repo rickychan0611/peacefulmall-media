@@ -174,7 +174,7 @@ const TopCat = () => {
 };
 
 const Container = styled.div`
-  z-index:100;
+  z-index:10000;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
