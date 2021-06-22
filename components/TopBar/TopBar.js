@@ -56,6 +56,7 @@ const Container = styled.div`
   position: fixed;
   top: ${p => p.isDesktop ? "42px" : "0px"};
   background-color: white;
+  z-index: 10000;
   /* box-shadow: 0 0 10px #d2e6de; */
 `;
 

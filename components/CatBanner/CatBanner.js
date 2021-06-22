@@ -21,7 +21,7 @@ const CatBanner = () => {
               <Title>{item.title}</Title>
               <div>
                 {subCats && subCats.id === item.id ? (
-                  <Icon name="chevron left" />
+                  <Icon name="minus" />
                 ) : ( 
                   <Icon name="chevron right" />
                 )}

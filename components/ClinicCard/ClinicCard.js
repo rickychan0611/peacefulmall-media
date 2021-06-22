@@ -10,16 +10,18 @@ const ClinicCard = ( {item} ) => {
 
   return (
     <CardContainer>
-      <Pic src={item.pic} />
-      <Name>{item.name}</Name>
-      <Title>{item.title}</Title>
-      <Answer>78人回答</Answer>
-      <Button>咨询医生</Button>
+        <Pic src={item.pic} />
+      <Wrapper>
+        <Name>{item.name}</Name>
+        <Lang>{item.lang}</Lang>
+        <Tel><Icon name="phone" />&nbsp;&nbsp;{item.tel}</Tel>
+      </Wrapper>
     </CardContainer>
   );
 };
 
 const CardContainer = styled.div`
+  flex: 1;
   display: flex;
   flex-flow: column nowrap;
   background-color: white;
@@ -28,35 +30,39 @@ const CardContainer = styled.div`
   border: 1px solid #dddbdb;
   width: 100%;
   border-radius: 5px;
-  padding: 20px 24px 20px 24px;
   cursor: pointer;
+`;
+
+const Wrapper = styled.div`
   flex: 1;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  padding: 0px 20px 20px 20px;
 `;
 
 const Pic = styled.img`
   font-weight: bold;
-  width: 72px;
-  height: 72px;
-  border-radius: 50px;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px 5px 0px 0px;
   border-bottom: 10px;
   margin-bottom: 15px;
 `;
 const Name = styled.div`
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 8px;
-`;
-const Title = styled.div`
-  font-size: 12px;
-  font-weight: bold;
-  margin-bottom: 8px;
-  color: grey;
-`;
-const Answer = styled.div`
-  font-size: 14px;
-  font-weight: bold;
   margin-bottom: 10px;
+`;
+const Lang = styled.div`
+  font-size: 14px;
   color: grey;
+  margin-bottom: 5px;
+`;
+const Tel = styled.div`
+  font-size: 14px;
+  color: black;
+
 `;
 const Button = styled.div`
   font-size: 14px;

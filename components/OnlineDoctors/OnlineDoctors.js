@@ -3,14 +3,37 @@ import styled from 'styled-components';
 import { Icon } from 'semantic-ui-react';
 import { useRecoilState } from 'recoil';
 import { openSideMenu as openSideMenuAtom } from '../../data/atoms.js';
-import DoctorCard from '../DoctorCard/'
+import DoctorCard from '../DoctorCard'
 ;
 const types = ['儿科', '妇科', '产科', '泌尿外科', '消化内科', '口腔科', '耳鼻喉科'];
+const doctors = [
+  {
+    id: 1,
+    name: "石志坚",
+    pic: "/doctor-1.png",
+    title: "小儿内科副主任医师"
+  },
+  {
+    id: 2,
+    name: "王光强",
+    pic: "/doctor-2.jpg",
+    title: "小儿内科副主任医师"
+  },
+  {
+    id: 3,
+    name: "周俊",
+    pic: "/doctor-3.jpg",
+    title: "小儿内科副主任医师"
+  },
+  {
+    id: 4,
+    name: "吕莎莎",
+    pic: "/doctor-4.jpg",
+    title: "小儿内科副主任医师"
+  }
+] 
 
-const OnlineInquiry = () => {
-  const router = useRouter();
-  const [openSideMenu, setOpenSideMenu] = useRecoilState(openSideMenuAtom);
-
+const OnlineDoctors = () => {
   return (
     <>
       <Container>
@@ -26,17 +49,26 @@ const OnlineInquiry = () => {
             </All>
           </TypeWrapper>
         </Row>
-        <Row>
-          <DoctorCard/>
-          <DoctorCard/>
-          <DoctorCard/>
-          <DoctorCard/>
-        </Row>
+        <DoctorCardWrapper>
+          {doctors.map((item,i) => {
+            return (
+              <DoctorCard item={item} key={i}/>
+            )
+          })}
+        </DoctorCardWrapper>
       </Container>
     </>
   );
 };
 
+const DoctorCardWrapper = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  gap: 10px;
+`;
 const Row = styled.div`
   display: flex;
   flex-flow: row nowrap;
@@ -80,4 +112,4 @@ const Container = styled.div`
   padding: 20px 24px 10px 24px;
 `;
 
-export default OnlineInquiry;
+export default OnlineDoctors;

@@ -184,7 +184,7 @@ const Container = styled.div`
   padding: 6px 40px 6px 40px;
   position: fixed;
   top: 0;
-  /* background-color: ${p => p.theme.lightGreen}; */
+  background-color: ${p => p.theme.lightGreen};
 `;
 
 const Cat = styled.div`
