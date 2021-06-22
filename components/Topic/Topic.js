@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Icon, Divider } from 'semantic-ui-react';
 import { useRecoilState } from 'recoil';
 import { openSideMenu as openSideMenuAtom } from '../../data/atoms.js';
-import QuestionCards from '../QuestionCards';
 
 const Topic = ({title, flex, children, cats}) => {
   return (
@@ -21,8 +20,6 @@ const Topic = ({title, flex, children, cats}) => {
             </All>
           </CatWrapper>
         </Row>
-        <Divider />
-
         {children}
 
       </Container>

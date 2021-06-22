@@ -1,111 +1,64 @@
-import { useRouter } from 'next/router';
-import styled from 'styled-components';
-import { Icon } from 'semantic-ui-react';
-import { useRecoilState } from 'recoil';
-import { openSideMenu as openSideMenuAtom } from '../../data/atoms.js';
+import { useRouter } from "next/router";
+import styled from "styled-components";
+import { Divider } from "semantic-ui-react";
+import { useRecoilState } from "recoil";
 
-const doctors = [
-  {
-    id: 1,
-    name: "石志坚",
-    pic: "/doctor-1.png",
-    title: "小儿内科副主任医师"
-  },
-  {
-    id: 2,
-    name: "王光强",
-    pic: "/doctor-2.jpg",
-    title: "小儿内科副主任医师"
-  },  
-  {
-    id: 3,
-    name: "周俊",
-    pic: "/doctor-3.jpg",
-    title: "小儿内科副主任医师"
-  },
-  {
-    id: 4,
-    name: "吕莎莎",
-    pic: "/doctor-4.jpg",
-    title: "小儿内科副主任医师"
-  }
-] 
-
-const QuestionCards = ( ) => {
+const QuestionCards = () => {
   const router = useRouter();
-  const [openSideMenu, setOpenSideMenu] = useRecoilState(openSideMenuAtom);
 
   return (
     <Wrapper>
-      {doctors.map((item,i) => {
-        return (
-          <CardContainer>
-            <Pic src={item.pic} />
-            <Name>{item.name}</Name>
-            <Title>{item.title}</Title>
-            <Answer>78人回答</Answer>
-            <Button>咨询医生</Button>
-          </CardContainer>
-        )
-      })}
+      <Divider />
+      <Card>
+        <Img src="/pic-1.jpg" />
+        <Title>中药停一周还有效果吗？</Title>
+      </Card>
+      <Divider />
+      <Card>
+        <Img src="/pic-2.jpg" />
+        <Title>[中医科] 脾虚会出现什么问题？</Title>
+      </Card>
+      <Divider />
+      <Card>
+        <Img src="/pic-3.jpg" />
+        <Title>[中医科] 脾虚会出现什么问题？</Title>
+      </Card>
+      <Divider />
+      <Header>喝中药中途喝酒了要注意什么？</Header>
+      <Header>艾灸能降血糖吗？</Header>
+      <Header>湿热是怎么回事？</Header>
+      <Header>[中医科] 经常艾灸对身体好吗？</Header>
+      <Header>[中医科] 中药停一周还有效果吗？</Header>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
   display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 0;
+  flex-flow: column nowrap;
+  width: 100%;
   gap: 10px;
 `;
-const CardContainer = styled.div`
+const Card = styled.div`
   display: flex;
-  flex-flow: column nowrap;
-  background-color: white;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #dddbdb;
+  flex-flow: row nowrap;
   width: 100%;
+  gap: 15px;
+`;
+const Img = styled.img`
+  width: 120px;
+  height: 90px;
   border-radius: 5px;
-  padding: 20px 24px 20px 24px;
-  cursor: pointer;
-  flex: 1;
-`;
-
-const Pic = styled.img`
-  font-weight: bold;
-  width: 72px;
-  height: 72px;
-  border-radius: 50px;
-  border-bottom: 10px;
-  margin-bottom: 15px;
-`;
-const Name = styled.div`
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 8px;
 `;
 const Title = styled.div`
-  font-size: 12px;
   font-weight: bold;
-  margin-bottom: 8px;
-  color: grey;
+  font-size: 18px;
+  line-height: 28px;
 `;
-const Answer = styled.div`
-  font-size: 14px;
+const Header = styled.div`
   font-weight: bold;
-  margin-bottom: 10px;
-  color: grey;
-`;
-const Button = styled.div`
-  font-size: 14px;
-  font-weight: bold;
-  background-color: #30aabc;
-  color: white;
-  padding: 8px 20px;
-  border-radius: 5px;
+  font-size: 15px;
+  line-height: 28px;
 `;
 
 export default QuestionCards;

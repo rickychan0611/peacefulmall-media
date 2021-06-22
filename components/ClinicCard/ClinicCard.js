@@ -62,15 +62,6 @@ const Lang = styled.div`
 const Tel = styled.div`
   font-size: 14px;
   color: black;
-
-`;
-const Button = styled.div`
-  font-size: 14px;
-  font-weight: bold;
-  background-color: #30aabc;
-  color: white;
-  padding: 8px 20px;
-  border-radius: 5px;
 `;
 
 export default ClinicCard;
