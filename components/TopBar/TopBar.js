@@ -57,7 +57,7 @@ const Container = styled.div`
   top: ${p => p.isDesktop ? "42px" : "0px"};
   background-color: white;
   z-index: 10000;
-  /* box-shadow: 0 0 10px #d2e6de; */
+  box-shadow: 0 4px 4px rgb(0, 0, 0, 0.1);
 `;
 
 export default TopBar;

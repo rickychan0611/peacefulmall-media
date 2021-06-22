@@ -10,6 +10,8 @@ import QnA from '../components/QnA';
 import QuestionCards from '../components/QuestionCards';
 import BlogList from '../components/BlogList';
 import VideoCards from '../components/VideoCards';
+import HerbCards from '../components/HerbCards';
+import SearchCard from '../components/SearchCard';
 
 const doctorCats = ['儿科', '妇科', '产科', '泌尿外科', '消化内科', '口腔科', '耳鼻喉科'];
 const special = ['食疗养生', '自我保健'];
@@ -36,8 +38,8 @@ const Home = () => {
       <Topic title="视频课程" flex={1}><VideoCards /></Topic>
       <br />
       <TwoColRow>
-        <Topic title="中草药百科" flex={2} cats={special}><BlogList /></Topic>
-        <Topic title="中药房" flex={1}><QuestionCards /></Topic>
+        <Topic title="中草药百科" flex={2}><HerbCards /></Topic>
+        <Topic title="中药房" flex={1}><SearchCard /></Topic>
       </TwoColRow>
     </>
   );
