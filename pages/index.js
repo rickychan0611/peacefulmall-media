@@ -51,4 +51,5 @@ const TwoColRow = styled.div`
   justify-content: space-between;
   gap: 20px;
 `;
+
 export default Home;

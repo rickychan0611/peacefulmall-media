@@ -2,11 +2,18 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import { Divider, Pagination, Icon } from "semantic-ui-react";
 import { useRecoilState } from "recoil";
-import { doctors as doctorsAtom } from "../../data/atoms";
+import { doctors as doctorsAtom, selectedDoctor as selectedDoctorAtom } from "../../data/atoms";
 
 const DoctorList = () => {
   const router = useRouter();
   const [doctors] = useRecoilState(doctorsAtom);
+  const [selectedDoctor, setSelectedDoctor] = useRecoilState(selectedDoctorAtom);
+
+  const viewDoctor = (item) => {
+    console.log("item", item)
+    setSelectedDoctor(item)
+    router.push('/doctor/' + item.name + '/' + item.id)
+  }
 
   return (
     <Wrapper>
@@ -32,7 +39,7 @@ const DoctorList = () => {
                   <Bio>{item.bio}</Bio>
                 </div>
                 <div>
-                  <Button>咨询医生</Button>
+                  <Button onClick={() => viewDoctor(item)}>咨询医生</Button>
                   <br />
                   <Button>网上约诊</Button>
                 </div>

@@ -40,8 +40,8 @@ const Container = styled.div`
 const Wrapper = styled.div`
   width: 100%;
   max-width: 1100px;
-  padding: 140px 40px 10px 40px;
-  padding-top: ${p => p.isDesktop ? "140px" : "80px"};
+  padding: 130px 40px 10px 40px;
+  padding-top: ${p => p.isDesktop ? "130px" : "80px"};
   margin: 0 auto;
 `;
 

@@ -9,7 +9,7 @@ const doctors = [
   {
     id: 1,
     name: "石志坚",
-    pic: "/doctor-1.png",
+    pic: "/v-doc-1.jpg",
     title: "小儿内科副主任医师"
   },
   {

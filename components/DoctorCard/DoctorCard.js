@@ -4,7 +4,7 @@ import { Icon } from 'semantic-ui-react';
 import { useRecoilState } from 'recoil';
 import { openSideMenu as openSideMenuAtom } from '../../data/atoms.js';
 
-const ClinicCard = ( {item} ) => {
+const DoctorCard = ( {item} ) => {
   const router = useRouter();
   const [openSideMenu, setOpenSideMenu] = useRecoilState(openSideMenuAtom);
 
@@ -14,7 +14,9 @@ const ClinicCard = ( {item} ) => {
       <Name>{item.name}</Name>
       <Title>{item.title}</Title>
       <Answer>78人回答</Answer>
-      <Button>咨询医生</Button>
+      <Button onClick={()=>{
+        router.push('/doctor/' + item.name + '/' + item.id )
+      }}>咨询医生</Button>
     </CardContainer>
   );
 };
@@ -40,6 +42,7 @@ const Pic = styled.img`
   border-radius: 50px;
   border-bottom: 10px;
   margin-bottom: 15px;
+  object-fit: cover;
 `;
 const Name = styled.div`
   font-size: 18px;
@@ -67,4 +70,4 @@ const Button = styled.div`
   border-radius: 5px;
 `;
 
-export default ClinicCard;
+export default DoctorCard;
