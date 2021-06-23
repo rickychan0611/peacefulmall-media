@@ -9,7 +9,7 @@ const Doctor = () => {
       <Topic title="在线问诊" flex={2}>
         <DoctorList />
       </Topic>
-      <Topic title="推荐专家" flex={1}>
+      <Topic title="推荐专家" flex={1} fixedHeight>
         <FeaturedDoctor />
       </Topic>
     </TwoCol>

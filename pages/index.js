@@ -21,7 +21,7 @@ const Home = () => {
     <>
       <CatBanner />
       <br/>
-      <Topic title="在线问诊" flex={1} cats={doctorCats}><OnlineDoctors /></Topic>
+      <Topic title="在线问诊" flex={1} cats={doctorCats} path="/doctor"><OnlineDoctors /></Topic>
       <br/>
       <Topic title="中医诊所" flex={1}><Clinics /></Topic>
       <br />

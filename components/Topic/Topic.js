@@ -1,20 +1,20 @@
-import { useRouter } from 'next/router';
+import router, { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { Icon, Divider } from 'semantic-ui-react';
 import { useRecoilState } from 'recoil';
 import { openSideMenu as openSideMenuAtom } from '../../data/atoms.js';
 
-const Topic = ({title, flex, children, cats}) => {
+const Topic = ({title, flex, children, cats, fixedHeight, path}) => {
   return (
     <>
-      <Container flex={flex}>
+      <Container flex={flex} fixedHeight={fixedHeight}>
         <Row>
           <Title>{title}</Title>
           <CatWrapper>
             {cats && cats.map((cat) => (
               <CatName>{cat}</CatName>
             ))}
-            <All>
+            <All onClick={() => router.push(path)}>
                查看更多 &nbsp;&nbsp;
               <Icon name="chevron right" size="small" />
             </All>
@@ -35,7 +35,7 @@ const Container = styled.div`
   box-shadow: 0 0 10px #dddbdb;
   width: 100%;
   padding: 20px 24px 20px 24px;
-  height: 100%;
+  height: ${p => p.fixedHeight && "100%"}
 `;
 const CatWrapper = styled.div`
   display: flex;
