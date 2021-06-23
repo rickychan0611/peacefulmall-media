@@ -28,13 +28,14 @@ const Topic = ({title, flex, children, cats}) => {
 };
 
 const Container = styled.div`
-  flex : ${p => p.flex};
+  flex : ${p => p.flex === 1 ? "1 3" : "2 0"};
   display: flex;
   flex-flow: column nowrap;
   background-color: white;
   box-shadow: 0 0 10px #dddbdb;
   width: 100%;
   padding: 20px 24px 20px 24px;
+  height: 100%;
 `;
 const CatWrapper = styled.div`
   display: flex;
