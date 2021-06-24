@@ -11,6 +11,7 @@ const Topic = ({
   fixedHeight,
   path,
   darkMode,
+  noAll
 }) => {
   return (
     <>
@@ -20,10 +21,12 @@ const Topic = ({
           <CatWrapper>
             {cats &&
               cats.map((cat) => <CatName darkMode={darkMode}>{cat}</CatName>)}
-            <All darkMode={darkMode} onClick={() => router.push(path)}>
-              查看更多 &nbsp;&nbsp;
-              <Icon name="chevron right" size="small" />
-            </All>
+            {!noAll && (
+              <All darkMode={darkMode} onClick={() => router.push(path)}>
+                查看更多 &nbsp;&nbsp;
+                <Icon name="chevron right" size="small" />
+              </All>
+            )}
           </CatWrapper>
         </Row>
         {children}

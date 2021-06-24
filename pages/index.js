@@ -32,7 +32,7 @@ const Home = () => {
       <Wrapper>
         <CatBanner />
       </Wrapper>
-      <br />
+
       <Wrapper>
         <Topic
           title="在线问诊"
@@ -41,6 +41,12 @@ const Home = () => {
           path="/doctor"
         >
           <OnlineDoctors />
+        </Topic>
+      </Wrapper>
+
+      <Wrapper >
+        <Topic title="中医诊所" flex={1} path="/clinic">
+          <Clinics />
         </Topic>
       </Wrapper>
 
@@ -55,18 +61,12 @@ const Home = () => {
         </TwoColRow>
       </Wrapper>
 
-      <Wrapper >
-        <Topic title="中医诊所" flex={1} >
-          <Clinics />
-        </Topic>
-      </Wrapper>
-
       <Wrapper>
         <TwoColRow>
           <Topic title="特色中医" flex={2} cats={special}>
             <BlogList />
           </Topic>
-          <Topic title="大家都在问" flex={1}>
+          <Topic title="中医常识" flex={1}>
             <QuestionCards />
           </Topic>
         </TwoColRow>
@@ -93,14 +93,14 @@ const Home = () => {
 };
 
 const Wrapper = styled.div`
-  padding: 40px;
+  padding: 10px;
   background-color: ${(p) => p.backgroundColor};
 `;
 const TwoColRow = styled.div`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  gap: 50px;
+  gap: 20px;
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;

@@ -38,7 +38,5 @@ const Wrapper = styled.div`
 const MainColumn = styled.div`
   flex: 2.5;
 `;
-const Nav = styled.div`
-  margin-bottom: 20px;
-`;
+
 export default doctor_id;

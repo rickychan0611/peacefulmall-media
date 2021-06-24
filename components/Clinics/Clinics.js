@@ -37,10 +37,10 @@ const clinics = [
   }
 ] 
 
-const Clinics = () => {
+const Clinics = ( {column} ) => {
   return (
     <>
-        <CardWrapper>
+        <CardWrapper column={column}>
           {clinics.map((item,i) => {
             return (
               <ClinicCard item={item} key={i}/>
@@ -53,7 +53,7 @@ const Clinics = () => {
 
 const CardWrapper = styled.div`
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: ${p => p.column ? "column" : "row"} nowrap;
   align-items: center;
   justify-content: center;
   padding: 10px 0;

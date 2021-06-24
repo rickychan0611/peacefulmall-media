@@ -6,7 +6,6 @@ import { openSideMenu as openSideMenuAtom } from '../../data/atoms.js';
 
 const ClinicCard = ( {item} ) => {
   const router = useRouter();
-  const [openSideMenu, setOpenSideMenu] = useRecoilState(openSideMenuAtom);
 
   return (
     <CardContainer>

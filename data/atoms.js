@@ -5,6 +5,45 @@ export const openSideMenu = atom({
   default: false,
 });
 
+export const selectedClinic = atom({
+  key: "selectedClinic",
+  default: false,
+});
+
+export const clinics = atom({
+  key: "clinics",
+  default: [
+    {
+      id: 1,
+      name: "保德仁中医诊所",
+      pic: "/clinic-1.jpg",
+      lang: "国语 / 粤语 / 英语",
+      tel: "604-430-8185"
+    },
+    {
+      id: 2,
+      name: "东华中医",
+      pic: "/clinic-2.jpg",
+      lang: "国语 / 粤语 / 英语",
+      tel: "604-831-2698"
+    },
+    {
+      id: 3,
+      name: "保德仁中医诊所",
+      pic: "/clinic-1.jpg",
+      lang: "国语 / 粤语 / 英语",
+      tel: "604-430-8185"
+    },
+    {
+      id: 4,
+      name: "东华中医",
+      pic: "/clinic-2.jpg",
+      lang: "国语 / 粤语 / 英语",
+      tel: "604-831-2698"
+    }
+  ] ,
+});
+
 export const selectedDoctor = atom({
   key: "selectedDoctor",
   default: {
