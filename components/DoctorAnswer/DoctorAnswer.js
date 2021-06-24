@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import { Divider, Form, Icon, Image } from "semantic-ui-react";
+import { Divider, Form, Icon, Image, Modal, Segment } from "semantic-ui-react";
 import { useRecoilState } from "recoil";
 import {
   doctors as doctorsAtom,
@@ -47,6 +47,7 @@ const DoctorAnswer = () => {
   const [openImage, setOpenImage] = useState();
   const [openQuestion, setOpenQuestion] = useState(false);
   const [newQuestion, setNewQuestion] = useState({});
+  const [openModal, setOpenModal] = useState(false);
 
   const handleEvent = (event, id) => {
     const index = answers.findIndex((item) => item.id === id);
@@ -91,14 +92,15 @@ const DoctorAnswer = () => {
 
   const handleQuestionSubmit = () => {
     if (newQuestion.id) {
-      let temp = [...answers];
-      let question = newQuestion;
-      question = { ...question, createAt: moment().format("YYYY-MM-DD"), likes: 0 };
-      temp.unshift(question);
-      console.log("temp", temp);
-      setAnswers(temp);
+      // let temp = [...answers];
+      // let question = newQuestion;
+      // question = { ...question, createAt: moment().format("YYYY-MM-DD"), likes: 0 };
+      // temp.unshift(question);
+      // console.log("temp", temp);
+      // setAnswers(temp);
       setOpenQuestion(false);
       setNewQuestion({});
+      setOpenModal(true);
     }
   };
 
@@ -108,136 +110,149 @@ const DoctorAnswer = () => {
   }, [newQuestion]);
 
   return (
-    <Container>
-      <Row>
-        <Header>医生回复</Header>
-        <Button onClick={() => setOpenQuestion(!openQuestion)}>
-          <Icon name={!openQuestion ? "plus" : "minus"} /> 咨询医生
-        </Button>
-      </Row>
-      {openQuestion && (
-        <>
-          <Divider />
-          <Form onSubmit={handleQuestionSubmit}>
-            <Form.Group widths="equal"></Form.Group>
-            <Form.Input
-              label="您的问题"
-              placeholder="请用一句话概括描述您的病情及疑问"
-              value={newQuestion.question}
-              onChange={(e) => handleChange(e.target.value, "title")}
-            />
-            <Form.TextArea
-              label="详细信息"
-              placeholder="请填写您的健康疑问，描述越详细，医生们越容易解答。示例: 鼻子老是流鼻血，是怎么回事？慢性鼻窦炎的危害有哪些？该如何治疗？"
-              value={newQuestion.content}
-              onChange={(e) => handleChange(e.target.value, "content")}
-            />
-
+    <>
+      <Modal open={openModal} onClose={() => setOpenModal(false)} dimmer="inverted" size="tiny">
+        <Modal.Content>
+          <Header icon>
+            <Icon name="check circle outline" />
+            谢谢您的咨询。我们会尽快解答您的问题。
+          </Header>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button onClick={() => setOpenModal(false)}>OK</Button>
+        </Modal.Actions>
+      </Modal>
+      <Container>
+        <Row>
+          <Header>医生回复</Header>
+          <Button onClick={() => setOpenQuestion(!openQuestion)}>
+            <Icon name={!openQuestion ? "plus" : "minus"} /> 咨询医生
+          </Button>
+        </Row>
+        {openQuestion && (
+          <>
             <Divider />
-            <Title>添加照片</Title>
-            <PicRow>
-              {newQuestion &&
-                newQuestion.files &&
-                newQuestion.files[0] &&
-                newQuestion.files.map((file, i) => {
-                  return (
-                    <div style={{ position: "relative" }}>
-                      <CloseIcon
-                        onClick={() => {
-                          let newQuestionClone = JSON.parse(
-                            JSON.stringify(newQuestion)
-                          );
-                          let files = newQuestion.files;
-                          files.splice(i, 1);
-                          console.log("close", files);
-                          setNewQuestion((prev) => ({ ...prev, files }));
-                        }}
-                      >
-                        <Icon name="times" />
-                      </CloseIcon>
+            <Form onSubmit={handleQuestionSubmit}>
+              <Form.Group widths="equal"></Form.Group>
+              <Form.Input
+                label="您的问题"
+                placeholder="请用一句话概括描述您的病情及疑问"
+                value={newQuestion.question}
+                onChange={(e) => handleChange(e.target.value, "title")}
+              />
+              <Form.TextArea
+                label="详细信息"
+                placeholder="请填写您的健康疑问，描述越详细，医生们越容易解答。示例: 鼻子老是流鼻血，是怎么回事？慢性鼻窦炎的危害有哪些？该如何治疗？"
+                value={newQuestion.content}
+                onChange={(e) => handleChange(e.target.value, "content")}
+              />
 
-                      <ReviewImage
-                        src={file.preview}
-                        key={i}
-                        onClick={() => {
-                          setOpenImage(URL.createObjectURL(file));
-                          setOpen(true);
-                        }}
-                      />
-                    </div>
-                  );
-                })}
-              <div {...getRootProps()}>
-                <input {...getInputProps()} />
-                {isDragActive ? (
-                  <ReviewImage src="/addPhotoBox-blue.JPG" />
-                ) : (
-                  <ReviewImage src="/addPhotoBox.JPG" />
-                )}
-              </div>
-            </PicRow>
-            <Button type="submit">提交咨询</Button>
-          </Form>
-          <br />
-        </>
-      )}
-      {answers &&
-        answers.map((item, i) => {
-          return (
-            <>
               <Divider />
-              <AnswerContainer>
-                <Title>{item.title}</Title>
-                <Answer>{item.content}</Answer>
-                <Row>
+              <Title>添加照片</Title>
+              <PicRow>
+                {newQuestion &&
+                  newQuestion.files &&
+                  newQuestion.files[0] &&
+                  newQuestion.files.map((file, i) => {
+                    return (
+                      <div style={{ position: "relative" }}>
+                        <CloseIcon
+                          onClick={() => {
+                            let newQuestionClone = JSON.parse(
+                              JSON.stringify(newQuestion)
+                            );
+                            let files = newQuestion.files;
+                            files.splice(i, 1);
+                            console.log("close", files);
+                            setNewQuestion((prev) => ({ ...prev, files }));
+                          }}
+                        >
+                          <Icon name="times" />
+                        </CloseIcon>
+
+                        <ReviewImage
+                          src={file.preview}
+                          key={i}
+                          onClick={() => {
+                            setOpenImage(URL.createObjectURL(file));
+                            setOpen(true);
+                          }}
+                        />
+                      </div>
+                    );
+                  })}
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  {isDragActive ? (
+                    <ReviewImage src="/addPhotoBox-blue.JPG" />
+                  ) : (
+                    <ReviewImage src="/addPhotoBox.JPG" />
+                  )}
+                </div>
+              </PicRow>
+              <Button type="submit">提交咨询</Button>
+            </Form>
+            <br />
+          </>
+        )}
+        {answers &&
+          answers.map((item, i) => {
+            return (
+              <>
+                <Divider />
+                <AnswerContainer>
+                  <Title>{item.title}</Title>
+                  <Answer>{item.content}</Answer>
                   <Row>
-                    <div
-                      style={{
-                        marginRight: 30,
-                        color: item.liked ? "#30aabc" : "grey",
-                        cursor: "pointer",
-                      }}
-                      onClick={() => handleEvent("liked", item.id)}
-                    >
-                      <Icon
-                        name={item.liked ? "thumbs up" : "thumbs up outline"}
-                      />
-                      赞同 ({item.likes})
-                    </div>
-                    <div
-                      style={{
-                        marginRight: 30,
-                        color: item.fav ? "#30aabc" : "grey",
-                        cursor: "pointer",
-                      }}
-                      onClick={() => handleEvent("fav", item.id)}
-                    >
-                      <Icon name={item.fav ? "heart" : "heart outline"} />
-                      收藏
-                    </div>
-                    <div
-                      style={{
-                        marginRight: 30,
-                        color: item.shared ? "#30aabc" : "grey",
-                        cursor: "pointer",
-                      }}
-                      onClick={() => handleEvent("shared", item.id)}
-                    >
-                      <Icon name={"share"} />
-                      分享
-                    </div>
+                    <Row>
+                      <div
+                        style={{
+                          marginRight: 30,
+                          color: item.liked ? "#30aabc" : "grey",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => handleEvent("liked", item.id)}
+                      >
+                        <Icon
+                          name={item.liked ? "thumbs up" : "thumbs up outline"}
+                        />
+                        赞同 ({item.likes})
+                      </div>
+                      <div
+                        style={{
+                          marginRight: 30,
+                          color: item.fav ? "#30aabc" : "grey",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => handleEvent("fav", item.id)}
+                      >
+                        <Icon name={item.fav ? "heart" : "heart outline"} />
+                        收藏
+                      </div>
+                      <div
+                        style={{
+                          marginRight: 30,
+                          color: item.shared ? "#30aabc" : "grey",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => handleEvent("shared", item.id)}
+                      >
+                        <Icon name={"share"} />
+                        分享
+                      </div>
+                    </Row>
+                    <div style={{ color: "grey" }}>时间：{item.createAt}</div>
                   </Row>
-                  <div style={{ color: "grey" }}>时间：{item.createAt}</div>
-                </Row>
-              </AnswerContainer>
-            </>
-          );
-        })}
-      <Divider />
-      <div style={{ color: "#30aabc" }}>
-        <Icon name="chevron down" /> 查看更多
-      </div>
-    </Container>
+                </AnswerContainer>
+              </>
+            );
+          })}
+        <Divider />
+        <div style={{ color: "#30aabc" }}>
+          <Icon name="chevron down" /> 查看更多
+        </div>
+      </Container>
+    </>
   );
 };
 

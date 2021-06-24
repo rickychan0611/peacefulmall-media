@@ -1,23 +1,27 @@
-import { useRouter } from 'next/router';
-import styled from 'styled-components';
-import { Icon } from 'semantic-ui-react';
-import { useRecoilState } from 'recoil';
-import { selectedDoctor as selectedDoctorAtom } from '../../data/atoms.js';
+import { useRouter } from "next/router";
+import styled from "styled-components";
+import { Icon } from "semantic-ui-react";
+import { useRecoilState } from "recoil";
+import { selectedDoctor as selectedDoctorAtom } from "../../data/atoms.js";
 
-const DoctorCard = ( {item} ) => {
+const DoctorCard = ({ item }) => {
   const router = useRouter();
-  const [selectedDoctor, setSelectedDoctor] = useRecoilState(selectedDoctorAtom);
+  const [selectedDoctor, setSelectedDoctor] = useRecoilState(
+    selectedDoctorAtom
+  );
 
   return (
-    <CardContainer>
+    <CardContainer
+      onClick={() => {
+        setSelectedDoctor(item);
+        router.push("/doctor/" + item.name + "/" + item.id);
+      }}
+    >
       <Pic src={item.pic} />
       <Name>{item.name}</Name>
       <Title>{item.title}</Title>
       <Answer>78人回答</Answer>
-      <Button onClick={()=>{
-        setSelectedDoctor(item)
-        router.push('/doctor/' + item.name + '/' + item.id )
-      }}>咨询医生</Button>
+      <Button>咨询医生</Button>
     </CardContainer>
   );
 };
