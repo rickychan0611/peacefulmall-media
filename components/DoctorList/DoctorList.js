@@ -4,7 +4,7 @@ import { Divider, Pagination, Icon } from "semantic-ui-react";
 import { useRecoilState } from "recoil";
 import { doctors as doctorsAtom, selectedDoctor as selectedDoctorAtom } from "../../data/atoms";
 
-const DoctorList = () => {
+const DoctorList = ( {noNav}) => {
   const router = useRouter();
   const [doctors] = useRecoilState(doctorsAtom);
   const [selectedDoctor, setSelectedDoctor] = useRecoilState(selectedDoctorAtom);
@@ -17,10 +17,10 @@ const DoctorList = () => {
 
   return (
     <Wrapper>
-      <span>
+     {!noNav && <span>
         <span style={{ fontWeight: "500" }}>全部科室</span> 儿科 妇科 产科
         泌尿外科 消化内科 口腔科
-      </span>
+      </span>}
       {doctors.map((item, i) => {
         return (
           <>

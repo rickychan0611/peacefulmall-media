@@ -56,7 +56,7 @@ const Row = styled.div`
   gap: 10px;
 `;
 const Title = styled.div`
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 500;
   margin-right: 10px;
   color: ${(p) => p.darkMode && "white"};

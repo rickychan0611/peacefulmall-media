@@ -1,26 +1,28 @@
 import styled from "styled-components";
 import Topic from "../../../components/Topic";
 import QuestionCards from "../../../components/QuestionCards";
-import SingleDoctorCard from "../../../components/SingleDoctorCard";
-import DoctorAnswer from "../../../components/DoctorAnswer";
-import DoctorFeedback from "../../../components/DoctorFeedback";
+import SingleClinicCard from "../../../components/SingleClinicCard";
+import SingleClinicDetail from "../../../components/SingleClinicDetail";
+import DoctorList from "../../../components/DoctorList";
 import TwoColPage from "../../../components/TwoColPage";
 import { useRecoilState } from "recoil";
-import { selectedDoctor as selectedDoctorAtom } from "../../../data/atoms";
+import { selectedClinic as selectedClinicAtom } from "../../../data/atoms";
 
-const doctor_id = () => {
-  const [selectedDoctor] = useRecoilState(selectedDoctorAtom);
+const clinic_id = () => {
+  const [selectedClinic] = useRecoilState(selectedClinicAtom);
 
   return (
     <Wrapper>
-      {selectedDoctor && (
-        <TwoColPage nav={"健康 > 在线问诊 > 保德仁中医诊所 > 石志坚"}>
+      {selectedClinic && (
+        <TwoColPage nav={"健康 > 在线问诊 > 保德仁中医诊所"}>
           <MainColumn>
-            <SingleDoctorCard item={selectedDoctor} />
+            <SingleClinicCard item={selectedClinic} />
             <br />
-            <DoctorAnswer />
+            <SingleClinicDetail item={selectedClinic} />
             <br />
-            <DoctorFeedback />
+            <Topic title="主治医生" flex={2} noAll>
+              <DoctorList noNav/>
+            </Topic>
           </MainColumn>
 
           <Topic title="大家都在问" flex={1} fixedHeight>
@@ -28,7 +30,7 @@ const doctor_id = () => {
           </Topic>
         </TwoColPage>
       )}
-      </Wrapper>
+    </Wrapper>
   );
 };
 
@@ -39,4 +41,4 @@ const MainColumn = styled.div`
   flex: 2.5;
 `;
 
-export default doctor_id;
+export default clinic_id;

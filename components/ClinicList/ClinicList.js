@@ -4,7 +4,7 @@ import { Divider, Pagination, Icon } from "semantic-ui-react";
 import { useRecoilState } from "recoil";
 import {
   clinics as clinicsAtom,
-  selectedDoctor as selectedClinicAtom,
+  selectedClinic as selectedClinicAtom,
 } from "../../data/atoms";
 
 const DoctorList = () => {
@@ -14,10 +14,10 @@ const DoctorList = () => {
     selectedClinicAtom
   );
 
-  const viewDoctor = (item) => {
-    console.log("item", item);
-    setSelectedDoctor(item);
-    router.push("/doctor/" + item.name + "/" + item.id);
+  const viewClinic = (item) => {
+    console.log("clinic item", item);
+    setSelectedClinic(item);
+    router.push("/clinic/" + item.name + "/" + item.id);
   };
 
   return (
@@ -29,7 +29,7 @@ const DoctorList = () => {
       </span>
       {clinics.map((item, i) => {
         return (
-          <CardContainer>
+          <CardContainer onClick={() => viewClinic(item)}>
             <PicWrapper>
               <Pic src={item.pic} />
             </PicWrapper>

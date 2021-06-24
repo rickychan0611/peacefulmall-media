@@ -1,11 +1,8 @@
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { Icon } from 'semantic-ui-react';
-import { useRecoilState } from 'recoil';
-import { openSideMenu as openSideMenuAtom } from '../../data/atoms.js';
 
 const ClinicCard = ( {item} ) => {
-  const router = useRouter();
 
   return (
     <CardContainer>
