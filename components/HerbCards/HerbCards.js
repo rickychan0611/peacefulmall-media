@@ -75,7 +75,7 @@ const Img = styled.img`
   border-radius: 5px;
 `;
 const Title = styled.div`
-  font-weight: bold;
+  font-weight: 500;
   font-size: 18px;
   line-height: 28px;
   margin-bottom: 10px;

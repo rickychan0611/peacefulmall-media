@@ -40,7 +40,7 @@ const CardContainer = styled.div`
   flex: 1;
 `;
 const Pic = styled.img`
-  font-weight: bold;
+  font-weight: 500;
   width: 72px;
   height: 72px;
   border-radius: 50px;
@@ -50,24 +50,24 @@ const Pic = styled.img`
 `;
 const Name = styled.div`
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 8px;
 `;
 const Title = styled.div`
   font-size: 12px;
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 8px;
   color: grey;
 `;
 const Answer = styled.div`
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 10px;
   color: grey;
 `;
 const Button = styled.div`
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 500;
   background-color: #30aabc;
   color: white;
   padding: 8px 20px;

@@ -1,10 +1,8 @@
-import { useRouter } from "next/router";
 import styled from "styled-components";
 import { Divider } from "semantic-ui-react";
-import { useRecoilState } from "recoil";
+import CardContainer from '../../components/CardContainer';
 
 const QuestionCards = () => {
-  const router = useRouter();
 
   return (
     <Wrapper>
@@ -52,12 +50,12 @@ const Img = styled.img`
   border-radius: 5px;
 `;
 const Title = styled.div`
-  font-weight: bold;
+  font-weight: 500;
   font-size: 16px;
   line-height: 28px;
 `;
 const Header = styled.div`
-  font-weight: bold;
+  font-weight: 500;
   font-size: 15px;
   line-height: 28px;
   cursor: pointer;

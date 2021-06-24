@@ -18,7 +18,7 @@ const DoctorList = () => {
   return (
     <Wrapper>
       <span>
-        <span style={{ fontWeight: "bold" }}>全部科室</span> 儿科 妇科 产科
+        <span style={{ fontWeight: "500" }}>全部科室</span> 儿科 妇科 产科
         泌尿外科 消化内科 口腔科
       </span>
       {doctors.map((item, i) => {
@@ -105,7 +105,7 @@ const Img = styled.img`
   object-fit: cover;
 `;
 const Title = styled.div`
-  font-weight: bold;
+  font-weight: 500;
   font-size: 18px;
   line-height: 28px;
 `;

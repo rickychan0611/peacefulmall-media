@@ -42,7 +42,7 @@ const Wrapper = styled.div`
 `;
 
 const Pic = styled.img`
-  font-weight: bold;
+  font-weight: 500;
   width: 100%;
   height: 100%;
   border-radius: 5px 5px 0px 0px;
@@ -51,7 +51,7 @@ const Pic = styled.img`
 `;
 const Name = styled.div`
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 10px;
 `;
 const Lang = styled.div`

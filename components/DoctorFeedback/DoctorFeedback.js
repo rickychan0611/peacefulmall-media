@@ -1,12 +1,7 @@
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useState } from "react";
 import styled from "styled-components";
-import { Divider, Pagination, Icon } from "semantic-ui-react";
-import { useRecoilState } from "recoil";
-import {
-  doctors as doctorsAtom,
-  selectedDoctor as selectedDoctorAtom,
-} from "../../data/atoms";
+import { Divider, Icon } from "semantic-ui-react";
+import CardContainer from '../../components/CardContainer';
 
 let feedbackData = [
   {
@@ -32,12 +27,8 @@ let feedbackData = [
   },
 ];
 
-const DoctorFeedback = () => {
-  const router = useRouter();
-  const [selectedDoctor, setSelectedDoctor] = useRecoilState(
-    selectedDoctorAtom
-  );
-  const [feedback, setFeedback] = useState(feedbackData);
+const DoctorFeedback = () => { 
+  const [feedback, ] = useState(feedbackData);
 
   const handleEvent = (event, id) => {
     const index = answers.findIndex((item) => item.id === id);
@@ -55,7 +46,7 @@ const DoctorFeedback = () => {
   };
 
   return (
-    <Container>
+    <CardContainer>
       <Row style={{ justifyContent: "space-between" }}>
         <Header>患者评价</Header>
         <Button>
@@ -82,7 +73,7 @@ const DoctorFeedback = () => {
       <div style={{ color: "#30aabc" }}>
         <Icon name="chevron down" /> 查看更多
       </div>
-    </Container>
+    </CardContainer>
   );
 };
 
@@ -103,14 +94,6 @@ const Img = styled.img`
   object-fit: cover;
   border-radius: 30px;
 `;
-const Container = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  background-color: white;
-  width: 100%;
-  padding: 20px 44px 30px 44px;
-  border-radius: 10px;
-`;
 const Col = styled.div`
   display: flex;
   flex-flow: column nowrap;
@@ -124,7 +107,7 @@ const Row = styled.div`
   gap: 10px;
 `;
 const Header = styled.div`
-  font-weight: bold;
+  font-weight: 500;
   font-size: 20px;
   margin-top: 10px;
   margin-bottom: 10px;

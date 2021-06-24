@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import { Divider, Form, Icon, Image, Modal, Segment } from "semantic-ui-react";
+import { Divider, Form, Icon, Image, Modal } from "semantic-ui-react";
 import { useRecoilState } from "recoil";
-import {
-  doctors as doctorsAtom,
-  selectedDoctor as selectedDoctorAtom,
-} from "../../data/atoms";
+import { selectedDoctor as selectedDoctorAtom } from "../../data/atoms";
 import { useDropzone } from "react-dropzone";
-import moment from "moment";
+import CardContainer from '../../components/CardContainer';
 
 let answerData = [
   {
@@ -122,7 +119,7 @@ const DoctorAnswer = () => {
           <Button onClick={() => setOpenModal(false)}>OK</Button>
         </Modal.Actions>
       </Modal>
-      <Container>
+      <CardContainer>
         <Row>
           <Header>医生回复</Header>
           <Button onClick={() => setOpenQuestion(!openQuestion)}>
@@ -251,7 +248,7 @@ const DoctorAnswer = () => {
         <div style={{ color: "#30aabc" }}>
           <Icon name="chevron down" /> 查看更多
         </div>
-      </Container>
+      </CardContainer>
     </>
   );
 };
@@ -294,13 +291,13 @@ const PicRow = styled.div`
   margin-bottom: 30px;
 `;
 const Header = styled.div`
-  font-weight: bold;
+  font-weight: 500;
   font-size: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
 `;
 const Title = styled.div`
-  font-weight: bold;
+  font-weight: 500;
   font-size: 15px;
   margin-top: 10px;
   margin-bottom: 10px;

@@ -1,42 +1,37 @@
-import router, { useRouter } from 'next/router';
-import styled from 'styled-components';
-import { Icon, Divider } from 'semantic-ui-react';
-import { useRecoilState } from 'recoil';
-import { openSideMenu as openSideMenuAtom } from '../../data/atoms.js';
+import router, { useRouter } from "next/router";
+import styled from "styled-components";
+import { Icon, Divider } from "semantic-ui-react";
+import CardContainer from "../../components/CardContainer";
 
-const Topic = ({title, flex, children, cats, fixedHeight, path}) => {
+const Topic = ({
+  title,
+  flex,
+  children,
+  cats,
+  fixedHeight,
+  path,
+  darkMode,
+}) => {
   return (
     <>
-      <Container flex={flex} fixedHeight={fixedHeight}>
+      <CardContainer flex={flex} fixedHeight={fixedHeight}>
         <Row>
-          <Title>{title}</Title>
+          <Title darkMode={darkMode}>{title}</Title>
           <CatWrapper>
-            {cats && cats.map((cat) => (
-              <CatName>{cat}</CatName>
-            ))}
-            <All onClick={() => router.push(path)}>
-               查看更多 &nbsp;&nbsp;
+            {cats &&
+              cats.map((cat) => <CatName darkMode={darkMode}>{cat}</CatName>)}
+            <All darkMode={darkMode} onClick={() => router.push(path)}>
+              查看更多 &nbsp;&nbsp;
               <Icon name="chevron right" size="small" />
             </All>
           </CatWrapper>
         </Row>
         {children}
-
-      </Container>
+      </CardContainer>
     </>
   );
 };
 
-const Container = styled.div`
-  flex : ${p => p.flex === 1 ? "1 3" : "2 0"};
-  display: flex;
-  flex-flow: column nowrap;
-  background-color: white;
-  width: 100%;
-  padding: ${p => p.flex === 1 ? "20px 24px 30px 24px" : "20px 44px 30px 44px"};
-  height: ${p => p.fixedHeight && "100%"};
-  border-radius: 10px;
-`;
 const CatWrapper = styled.div`
   display: flex;
   flex-flow: row nowrap;
@@ -44,10 +39,10 @@ const CatWrapper = styled.div`
   align-items: center;
 `;
 const CatName = styled.div`
-  font-weight: bold;
   font-size: 15px;
   color: grey;
   margin-left: 20px;
+  color: ${(p) => p.darkMode && "white"};
 `;
 const Row = styled.div`
   display: flex;
@@ -59,14 +54,16 @@ const Row = styled.div`
 `;
 const Title = styled.div`
   font-size: 22px;
-  font-weight: bold;
+  font-weight: 500;
   margin-right: 10px;
+  color: ${(p) => p.darkMode && "white"};
 `;
 const All = styled.div`
-  font-weight: bold;
+  font-weight: 500;
   font-size: 15px;
   color: #30aabc;
   margin-left: 20px;
+  color: ${(p) => p.darkMode && "white"};
 `;
 
 export default Topic;

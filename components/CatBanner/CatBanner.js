@@ -63,7 +63,7 @@ const Row = styled.div`
 `;
 const SubTitle = styled.div`
   flex: 1;
-  font-weight: bold;
+  font-weight: 500;
   margin-right: 10px;
 `;
 const SubList = styled.div`
@@ -83,6 +83,8 @@ const TopBannerRow = styled.div`
   flex-wrap: nowrap;
   min-height: 220px;
   width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
 `;
 const CatMenuContainer = styled.div`
   display: flex;
@@ -116,6 +118,7 @@ const SubCatContainer = styled.div`
   padding: 20px 24px 10px 24px;
   height: 100%;
   min-height: 220px;
+  gap: 5px;
 `;
 const BannerContainer = styled.div`
   position: relative;
@@ -128,7 +131,7 @@ const BannerText = styled.div`
   height: 72px;
   top: 60px;
   left: 104px;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 28px;
   line-height: 36px;
   color: white;

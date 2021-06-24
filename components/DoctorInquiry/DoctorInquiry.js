@@ -75,7 +75,7 @@ const Row = styled.div`
 
 const Title = styled.div`
   font-size: 22px;
-  font-weight: bold;
+  font-weight: 500;
   margin-right: 10px;
 `;
 
@@ -86,7 +86,7 @@ const TypeWrapper = styled.div`
   align-items: center;
 `;
 const All = styled.div`
-  font-weight: bold;
+  font-weight: 500;
   font-size: 15px;
   color: #30aabc;
   margin-left: 20px;

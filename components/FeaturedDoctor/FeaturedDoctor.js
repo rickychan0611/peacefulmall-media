@@ -74,7 +74,7 @@ const Img = styled.img`
   object-fit: cover;
 `;
 const Title = styled.div`
-  font-weight: bold;
+  font-weight: 500;
   font-size: 18px;
   line-height: 28px;
 `;

@@ -52,9 +52,9 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: ${p =>  p.isDesktop ? "10px 40px 10px 40px" : "10px 0 10px 0"};
+  padding: ${p =>  p.isDesktop ? "13px 40px 13px 40px" : "10px 0 10px 0"};
   position: fixed;
-  top: ${p => p.isDesktop ? "42px" : "0px"};
+  top: ${p => p.isDesktop ? "31px" : "0px"};
   background-color: white;
   z-index: 100;
   box-shadow: 0 4px 4px rgb(0, 0, 0, 0.1);

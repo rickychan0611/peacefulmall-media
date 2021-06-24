@@ -1,12 +1,12 @@
-import '../.semantic/dist/semantic.min.css';
-import '../styles.css';
-import theme from '../theme';
-import Head from 'next/head';
-import styled, { ThemeProvider } from 'styled-components';
-import { RecoilRoot, useRecoilState } from 'recoil';
-import TopCat from '../components/TopCat';
-import TopBar from '../components/TopBar';
-import { useIsDesktop } from '../util/useScreenSize';
+import "../.semantic/dist/semantic.min.css";
+import "../styles.css";
+import theme from "../theme";
+import Head from "next/head";
+import styled, { ThemeProvider } from "styled-components";
+import { RecoilRoot, useRecoilState } from "recoil";
+import TopNav from "../components/TopNav";
+import TopBar from "../components/TopBar";
+import { useIsDesktop } from "../util/useScreenSize";
 
 function MyApp({ Component, pageProps }) {
   const isDesktop = useIsDesktop();
@@ -16,10 +16,19 @@ function MyApp({ Component, pageProps }) {
       <RecoilRoot>
         <Head>
           <title>Peaceful Mall - Health</title>
-          <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+          <meta
+            httpEquiv="Content-Security-Policy"
+            content="upgrade-insecure-requests"
+          />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+            rel="stylesheet"
+          ></link>
         </Head>
         <Container>
-          {isDesktop && <TopCat />}
+          {isDesktop && <TopNav />}
           <TopBar />
           <Wrapper isDesktop={isDesktop}>
             <Component {...pageProps} />
@@ -33,15 +42,13 @@ function MyApp({ Component, pageProps }) {
 const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  /* align-items: center; */
   justify-content: center;
   width: 100vw;
 `;
 const Wrapper = styled.div`
   width: 100%;
-  max-width: 1100px;
-  padding: 130px 40px 10px 40px;
-  padding-top: ${p => p.isDesktop ? "130px" : "80px"};
+  padding-top: ${(p) => (p.isDesktop ? "110px" : "80px")};
+  padding-bottom: 60px;
   margin: 0 auto;
 `;
 

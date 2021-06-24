@@ -86,6 +86,7 @@ const CardContainer = styled.div`
   width: 100%;
   border-radius: 5px;
   cursor: pointer;
+  min-height: 352px;
 `;
 const Wrapper = styled.div`
   flex: 1;
@@ -95,7 +96,7 @@ const Wrapper = styled.div`
   padding: 0px 20px 20px 20px;
 `;
 const Pic = styled.img`
-  font-weight: bold;
+  font-weight: 500;
   width: 100%;
   height: 100%;
   border-radius: 5px 5px 0px 0px;
@@ -105,7 +106,7 @@ const Pic = styled.img`
 const Name = styled.div`
   font-size: 18px;
   line-height: 28px;
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 10px;
   overflow: hidden;
   text-overflow: ellipsis;

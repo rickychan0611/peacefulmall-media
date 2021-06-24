@@ -1,30 +1,28 @@
-import { useEffect } from 'react'
-
-import { useRouter } from "next/router";
 import styled from "styled-components";
-import { Divider, Pagination, Icon } from "semantic-ui-react";
+import CardContainer from "../../components/CardContainer";
 
-const SingleDoctorCard = ( {item} ) => {
-  const router = useRouter();
+const SingleDoctorCard = ({ item }) => {
 
   return (
-    <Wrapper>
-      <Card>
-        <Col3>
-          <Img src={item.pic} />
-          <div>
-            <Row>
-              <Title>{item.name}</Title>
-              <Des>{item.title}</Des>
-            </Row>
+    <CardContainer>
+      <Wrapper>
+        <Card>
+          <Col3>
+            <Img src={item.pic} />
+            <div>
+              <Row>
+                <Title>{item.name}</Title>
+                <Des>{item.title}</Des>
+              </Row>
 
-            <Content>{item.goodAt}</Content>
-            <br />
-            <Bio>{item.bio}</Bio>
-          </div>
-        </Col3>
-      </Card>
-    </Wrapper>
+              <Content>{item.goodAt}</Content>
+              <br />
+              <Bio>{item.bio}</Bio>
+            </div>
+          </Col3>
+        </Card>
+      </Wrapper>
+    </CardContainer>
   );
 };
 
@@ -35,7 +33,7 @@ const Wrapper = styled.div`
   width: 100%;
   gap: 10px;
   margin-top: 20px;
-  padding : 0 10px 30px 10px;
+  padding: 0 10px 30px 10px;
 `;
 const Card = styled.div`
   display: flex;
@@ -67,7 +65,7 @@ const Img = styled.img`
   object-fit: cover;
 `;
 const Title = styled.div`
-  font-weight: bold;
+  font-weight: 500;
   font-size: 18px;
   line-height: 28px;
 `;
@@ -83,14 +81,5 @@ const Bio = styled.div`
   font-size: 14px;
   line-height: 24px;
 `;
-const Button = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px;
-  border-radius: 5px;
-  background-color: ${(p) => p.theme.primary};
-  color: white;
-  min-width: 100px;
-`;
+
 export default SingleDoctorCard;

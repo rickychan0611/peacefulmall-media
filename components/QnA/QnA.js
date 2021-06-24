@@ -68,7 +68,7 @@ const DoctorRow = styled.div`
   gap: 10px;
 `
 const Pic = styled.img`
-  font-weight: bold;
+  font-weight: 500;
   width: 20px;
   height: 20px;
   border-radius: 50px;
@@ -76,7 +76,7 @@ const Pic = styled.img`
 `;
 const DoctorName = styled.div`
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 500;
 `;
 const DoctorInfo = styled.div`
   font-size: 12px;
@@ -84,12 +84,12 @@ const DoctorInfo = styled.div`
 `;
 const Question = styled.div`
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 8px;
 `;
 const Name = styled.div`
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 8px;
 `;
 const Content = styled.div`

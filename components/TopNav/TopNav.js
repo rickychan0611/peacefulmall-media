@@ -63,7 +63,7 @@ export const changeLocale = async (e, { value }) => {
   document.cookie = `NEXT_LOCALE=${value};expires=${date.toUTCString()};path=/`;
 };
 
-const TopCat = () => {
+const TopNav = () => {
   const router = useRouter();
   const [user, setUser] = useRecoilState(userAtom);
   const { t } = useTranslation('home');
@@ -85,18 +85,18 @@ const TopCat = () => {
       <Row>
         {!user ? (
           <>
-            <Button
+            <div
               compact
-              style={{ backgroundColor: 'white', marginRight: 10 }}
+              style={{marginRight: 20 }}
               onClick={() => router.push('/sign-up')}>
               {t('signUp')}
-            </Button>
-            <Button
+            </div>
+            <div
               compact
-              style={{ backgroundColor: 'white' }}
+              style={{ marginRight: 20 }}
               onClick={() => router.push('/sign-in')}>
               {t('signIn')}
-            </Button>
+            </div>
           </>
         ) : (
           <>
@@ -250,4 +250,4 @@ const MenuItem = styled.h4`
   background-color: ${(p) => p.selected && '#bebe51'};
   border-radius: ${(p) => p.selected && p.last && '0px 0px 15px 15px'};
 `;
-export default TopCat;
+export default TopNav;
