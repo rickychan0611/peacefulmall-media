@@ -32,10 +32,10 @@ const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
   background-color: white;
-  box-shadow: 0 0 10px #dddbdb;
   width: 100%;
-  padding: 20px 24px 20px 24px;
-  height: ${p => p.fixedHeight && "100%"}
+  padding: ${p => p.flex === 1 ? "20px 24px 30px 24px" : "20px 44px 30px 44px"};
+  height: ${p => p.fixedHeight && "100%"};
+  border-radius: 10px;
 `;
 const CatWrapper = styled.div`
   display: flex;

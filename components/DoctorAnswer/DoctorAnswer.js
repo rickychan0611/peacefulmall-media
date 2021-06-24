@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import { Divider, Pagination, Icon } from "semantic-ui-react";
+import { Divider, Form, Icon, Image } from "semantic-ui-react";
 import { useRecoilState } from "recoil";
 import {
   doctors as doctorsAtom,
   selectedDoctor as selectedDoctorAtom,
 } from "../../data/atoms";
+import { useDropzone } from "react-dropzone";
+import moment from "moment";
 
-let addressData = [
+let answerData = [
   {
     id: 1,
     title: "拔智齿前消炎药吃多久合适",
@@ -40,7 +42,11 @@ const DoctorAnswer = () => {
   const [selectedDoctor, setSelectedDoctor] = useRecoilState(
     selectedDoctorAtom
   );
-  const [answers, setAnswers] = useState(addressData);
+  const [answers, setAnswers] = useState(answerData);
+  const [open, setOpen] = useState(false);
+  const [openImage, setOpenImage] = useState();
+  const [openQuestion, setOpenQuestion] = useState(false);
+  const [newQuestion, setNewQuestion] = useState({});
 
   const handleEvent = (event, id) => {
     const index = answers.findIndex((item) => item.id === id);
@@ -57,14 +63,124 @@ const DoctorAnswer = () => {
     setAnswers(temp);
   };
 
+  const [openInput, setOpenInput] = useState(true);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    accept: "image/*",
+    onDrop: (acceptedFiles) => {
+      let newfiles = acceptedFiles.map((file) =>
+        Object.assign(file, {
+          preview: URL.createObjectURL(file),
+        })
+      );
+      console.log("newfiles", newfiles);
+      // setFiles([...files, ...newfiles]);
+      let files = newQuestion.files;
+
+      if (files && files[0]) {
+        handleChange([...files, ...newfiles], "files");
+      } else {
+        handleChange([...newfiles], "files");
+      }
+    },
+  });
+
+  const handleChange = (value, name) => {
+    setNewQuestion((prev) => ({ ...prev, [name]: value, id: answers.length }));
+  };
+
+  const handleQuestionSubmit = () => {
+    if (newQuestion.id) {
+      let temp = [...answers];
+      let question = newQuestion;
+      question = { ...question, createAt: moment().format("YYYY-MM-DD"), likes: 0 };
+      temp.unshift(question);
+      console.log("temp", temp);
+      setAnswers(temp);
+      setOpenQuestion(false);
+      setNewQuestion({});
+    }
+  };
+
+  useEffect(() => {
+    console.log("newQuestion", newQuestion);
+    setNewQuestion((prev) => prev);
+  }, [newQuestion]);
+
   return (
     <Container>
       <Row>
-        <Title>医生回复</Title>
-        <Button>
-          <Icon name="plus" /> 咨询医生
+        <Header>医生回复</Header>
+        <Button onClick={() => setOpenQuestion(!openQuestion)}>
+          <Icon name={!openQuestion ? "plus" : "minus"} /> 咨询医生
         </Button>
       </Row>
+      {openQuestion && (
+        <>
+          <Divider />
+          <Form onSubmit={handleQuestionSubmit}>
+            <Form.Group widths="equal"></Form.Group>
+            <Form.Input
+              label="您的问题"
+              placeholder="请用一句话概括描述您的病情及疑问"
+              value={newQuestion.question}
+              onChange={(e) => handleChange(e.target.value, "title")}
+            />
+            <Form.TextArea
+              label="详细信息"
+              placeholder="请填写您的健康疑问，描述越详细，医生们越容易解答。示例: 鼻子老是流鼻血，是怎么回事？慢性鼻窦炎的危害有哪些？该如何治疗？"
+              value={newQuestion.content}
+              onChange={(e) => handleChange(e.target.value, "content")}
+            />
+
+            <Divider />
+            <Title>添加照片</Title>
+            <PicRow>
+              {newQuestion &&
+                newQuestion.files &&
+                newQuestion.files[0] &&
+                newQuestion.files.map((file, i) => {
+                  return (
+                    <div style={{ position: "relative" }}>
+                      <CloseIcon
+                        onClick={() => {
+                          let newQuestionClone = JSON.parse(
+                            JSON.stringify(newQuestion)
+                          );
+                          let files = newQuestion.files;
+                          files.splice(i, 1);
+                          console.log("close", files);
+                          setNewQuestion((prev) => ({ ...prev, files }));
+                        }}
+                      >
+                        <Icon name="times" />
+                      </CloseIcon>
+
+                      <ReviewImage
+                        src={file.preview}
+                        key={i}
+                        onClick={() => {
+                          setOpenImage(URL.createObjectURL(file));
+                          setOpen(true);
+                        }}
+                      />
+                    </div>
+                  );
+                })}
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                {isDragActive ? (
+                  <ReviewImage src="/addPhotoBox-blue.JPG" />
+                ) : (
+                  <ReviewImage src="/addPhotoBox.JPG" />
+                )}
+              </div>
+            </PicRow>
+            <Button type="submit">提交咨询</Button>
+          </Form>
+          <br />
+        </>
+      )}
       {answers &&
         answers.map((item, i) => {
           return (
@@ -79,6 +195,7 @@ const DoctorAnswer = () => {
                       style={{
                         marginRight: 30,
                         color: item.liked ? "#30aabc" : "grey",
+                        cursor: "pointer",
                       }}
                       onClick={() => handleEvent("liked", item.id)}
                     >
@@ -91,6 +208,7 @@ const DoctorAnswer = () => {
                       style={{
                         marginRight: 30,
                         color: item.fav ? "#30aabc" : "grey",
+                        cursor: "pointer",
                       }}
                       onClick={() => handleEvent("fav", item.id)}
                     >
@@ -101,6 +219,7 @@ const DoctorAnswer = () => {
                       style={{
                         marginRight: 30,
                         color: item.shared ? "#30aabc" : "grey",
+                        cursor: "pointer",
                       }}
                       onClick={() => handleEvent("shared", item.id)}
                     >
@@ -122,37 +241,25 @@ const DoctorAnswer = () => {
   );
 };
 
-const TwoCol = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  /* justify-content: space-between; */
-  gap: 20px;
+const ReviewImage = styled(Image)`
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
 `;
-const MainColumn = styled.div`
-  flex: 2;
-`;
-const Nav = styled.div`
-  margin-bottom: 20px;
+const CloseIcon = styled.div`
+  position: absolute;
+  right: 0;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 2px 2px 4px 4px;
 `;
 const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
   background-color: white;
-  box-shadow: 0 0 10px #dddbdb;
   width: 100%;
-  padding: 20px 24px 20px 24px;
-`;
-const CatWrapper = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: center;
-`;
-const CatName = styled.div`
-  font-weight: bold;
-  font-size: 15px;
-  color: grey;
-  margin-left: 20px;
+  padding: 20px 44px 30px 44px;
+  border-radius: 10px;
 `;
 const Row = styled.div`
   display: flex;
@@ -162,19 +269,28 @@ const Row = styled.div`
   padding: 10px 0 10px 0;
   gap: 10px;
 `;
+const PicRow = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 30px;
+`;
+const Header = styled.div`
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;
 const Title = styled.div`
   font-weight: bold;
   font-size: 15px;
   margin-top: 10px;
   margin-bottom: 10px;
 `;
-const All = styled.div`
-  font-weight: bold;
-  font-size: 15px;
-  color: #30aabc;
-  margin-left: 20px;
-`;
-const Button = styled.div`
+const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -183,7 +299,10 @@ const Button = styled.div`
   color: white;
   /* border: 1px solid ${(p) => p.theme.primary}; */
   background-color: ${(p) => p.theme.primary};;
-  min-width: 100px;
+  width: 100px;
+  cursor: pointer;
+  border: none;
+
 `;
 const AnswerContainer = styled.div``;
 

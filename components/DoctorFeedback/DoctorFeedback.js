@@ -14,22 +14,22 @@ let feedbackData = [
     user_name: "Brooklyn Simmons",
     user_pic: "/user_blank.png",
     createAt: "Mar 20, 2019 23:14",
-    feedback: "太棒了，实实在在的好医生，很耐心讲解问题。"
+    feedback: "太棒了，实实在在的好医生，很耐心讲解问题。",
   },
   {
     id: 2,
     user_name: "Floyd Miles",
     user_pic: "/user_blank.png",
     createAt: "Mar 20, 2019 23:14",
-    feedback: "医生的态度很好，回答问题也很有耐心，好评。"
+    feedback: "医生的态度很好，回答问题也很有耐心，好评。",
   },
   {
     id: 3,
     user_name: "Jenny Wilsons",
     user_pic: "/user_blank.png",
     createAt: "Mar 20, 2019 23:14",
-    feedback: "太谢谢医生的及时回答，很满意"
-  }
+    feedback: "太谢谢医生的及时回答，很满意",
+  },
 ];
 
 const DoctorFeedback = () => {
@@ -56,8 +56,8 @@ const DoctorFeedback = () => {
 
   return (
     <Container>
-      <Row style={{justifyContent: "space-between"}}>
-        <Title>患者评价</Title>
+      <Row style={{ justifyContent: "space-between" }}>
+        <Header>患者评价</Header>
         <Button>
           <Icon name="plus" /> 写评论
         </Button>
@@ -87,8 +87,8 @@ const DoctorFeedback = () => {
 };
 
 const Feedback = styled.div`
-    font-size: 14px;
-    margin-bottom: 16px;
+  font-size: 14px;
+  margin-bottom: 16px;
 `;
 const Date = styled.div`
   color: grey;
@@ -100,16 +100,16 @@ const UserName = styled.div`
 const Img = styled.img`
   width: 32px;
   height: 32px;
-  object-fit : cover;
+  object-fit: cover;
   border-radius: 30px;
 `;
 const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
   background-color: white;
-  box-shadow: 0 0 10px #dddbdb;
   width: 100%;
-  padding: 20px 24px 20px 24px;
+  padding: 20px 44px 30px 44px;
+  border-radius: 10px;
 `;
 const Col = styled.div`
   display: flex;
@@ -123,9 +123,9 @@ const Row = styled.div`
   padding: 10px 0 10px 0;
   gap: 10px;
 `;
-const Title = styled.div`
+const Header = styled.div`
   font-weight: bold;
-  font-size: 15px;
+  font-size: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
 `;
@@ -139,5 +139,6 @@ const Button = styled.div`
   /* border: 1px solid ${(p) => p.theme.primary}; */
   background-color: ${(p) => p.theme.primary};;
   min-width: 100px;
+  cursor: pointer;
 `;
 export default DoctorFeedback;

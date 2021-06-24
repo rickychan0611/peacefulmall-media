@@ -35,7 +35,7 @@ const Wrapper = styled.div`
   width: 100%;
   gap: 10px;
   margin-top: 20px;
-  padding-bottom: 20px;
+  padding : 0 10px 30px 10px;
 `;
 const Card = styled.div`
   display: flex;

@@ -2,11 +2,11 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { Icon } from 'semantic-ui-react';
 import { useRecoilState } from 'recoil';
-import { openSideMenu as openSideMenuAtom } from '../../data/atoms.js';
+import { selectedDoctor as selectedDoctorAtom } from '../../data/atoms.js';
 
 const DoctorCard = ( {item} ) => {
   const router = useRouter();
-  const [openSideMenu, setOpenSideMenu] = useRecoilState(openSideMenuAtom);
+  const [selectedDoctor, setSelectedDoctor] = useRecoilState(selectedDoctorAtom);
 
   return (
     <CardContainer>
@@ -15,6 +15,7 @@ const DoctorCard = ( {item} ) => {
       <Title>{item.title}</Title>
       <Answer>78人回答</Answer>
       <Button onClick={()=>{
+        setSelectedDoctor(item)
         router.push('/doctor/' + item.name + '/' + item.id )
       }}>咨询医生</Button>
     </CardContainer>
@@ -34,7 +35,6 @@ const CardContainer = styled.div`
   cursor: pointer;
   flex: 1;
 `;
-
 const Pic = styled.img`
   font-weight: bold;
   width: 72px;

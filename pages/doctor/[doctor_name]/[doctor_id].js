@@ -50,7 +50,7 @@ const TwoCol = styled.div`
   padding-bottom: 50px;
 `;
 const MainColumn = styled.div`
-  flex: 2;
+  flex: 2.5;
 `;
 const Nav = styled.div`
   margin-bottom: 20px;
@@ -59,9 +59,9 @@ const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
   background-color: white;
-  box-shadow: 0 0 10px #dddbdb;
   width: 100%;
   padding: 20px 24px 20px 24px;
+  border-radius: 10px;
 `;
 const CatWrapper = styled.div`
   display: flex;

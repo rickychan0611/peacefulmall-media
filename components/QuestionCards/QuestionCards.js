@@ -44,6 +44,7 @@ const Card = styled.div`
   flex-flow: row nowrap;
   width: 100%;
   gap: 15px;
+  cursor: pointer;
 `;
 const Img = styled.img`
   width: 120px;
@@ -52,13 +53,14 @@ const Img = styled.img`
 `;
 const Title = styled.div`
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 28px;
 `;
 const Header = styled.div`
   font-weight: bold;
   font-size: 15px;
   line-height: 28px;
+  cursor: pointer;
 `;
 
 export default QuestionCards;
