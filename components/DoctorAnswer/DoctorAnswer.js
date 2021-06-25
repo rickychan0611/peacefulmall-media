@@ -4,8 +4,8 @@ import styled from "styled-components";
 import { Divider, Form, Icon, Image, Modal } from "semantic-ui-react";
 import { useRecoilState } from "recoil";
 import { selectedDoctor as selectedDoctorAtom } from "../../data/atoms";
-import { useDropzone } from "react-dropzone";
-import CardContainer from '../../components/CardContainer';
+import CardContainer from "../../components/CardContainer";
+import QuestionForm from "../../components/QuestionForm";
 
 let answerData = [
   {
@@ -35,16 +35,8 @@ let answerData = [
 ];
 
 const DoctorAnswer = () => {
-  const router = useRouter();
-  const [selectedDoctor, setSelectedDoctor] = useRecoilState(
-    selectedDoctorAtom
-  );
   const [answers, setAnswers] = useState(answerData);
-  const [open, setOpen] = useState(false);
-  const [openImage, setOpenImage] = useState();
   const [openQuestion, setOpenQuestion] = useState(false);
-  const [newQuestion, setNewQuestion] = useState({});
-  const [openModal, setOpenModal] = useState(false);
 
   const handleEvent = (event, id) => {
     const index = answers.findIndex((item) => item.id === id);
@@ -61,64 +53,8 @@ const DoctorAnswer = () => {
     setAnswers(temp);
   };
 
-  const [openInput, setOpenInput] = useState(true);
-
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    accept: "image/*",
-    onDrop: (acceptedFiles) => {
-      let newfiles = acceptedFiles.map((file) =>
-        Object.assign(file, {
-          preview: URL.createObjectURL(file),
-        })
-      );
-      console.log("newfiles", newfiles);
-      // setFiles([...files, ...newfiles]);
-      let files = newQuestion.files;
-
-      if (files && files[0]) {
-        handleChange([...files, ...newfiles], "files");
-      } else {
-        handleChange([...newfiles], "files");
-      }
-    },
-  });
-
-  const handleChange = (value, name) => {
-    setNewQuestion((prev) => ({ ...prev, [name]: value, id: answers.length }));
-  };
-
-  const handleQuestionSubmit = () => {
-    if (newQuestion.id) {
-      // let temp = [...answers];
-      // let question = newQuestion;
-      // question = { ...question, createAt: moment().format("YYYY-MM-DD"), likes: 0 };
-      // temp.unshift(question);
-      // console.log("temp", temp);
-      // setAnswers(temp);
-      setOpenQuestion(false);
-      setNewQuestion({});
-      setOpenModal(true);
-    }
-  };
-
-  useEffect(() => {
-    console.log("newQuestion", newQuestion);
-    setNewQuestion((prev) => prev);
-  }, [newQuestion]);
-
   return (
     <>
-      <Modal open={openModal} onClose={() => setOpenModal(false)} dimmer="inverted" size="tiny">
-        <Modal.Content>
-          <Header icon>
-            <Icon name="check circle outline" />
-            谢谢您的咨询。我们会尽快解答您的问题。
-          </Header>
-        </Modal.Content>
-        <Modal.Actions>
-          <Button onClick={() => setOpenModal(false)}>OK</Button>
-        </Modal.Actions>
-      </Modal>
       <CardContainer>
         <Row>
           <Header>医生回复</Header>
@@ -126,72 +62,14 @@ const DoctorAnswer = () => {
             <Icon name={!openQuestion ? "plus" : "minus"} /> 咨询医生
           </Button>
         </Row>
+
         {openQuestion && (
           <>
             <Divider />
-            <Form onSubmit={handleQuestionSubmit}>
-              <Form.Group widths="equal"></Form.Group>
-              <Form.Input
-                label="您的问题"
-                placeholder="请用一句话概括描述您的病情及疑问"
-                value={newQuestion.question}
-                onChange={(e) => handleChange(e.target.value, "title")}
-              />
-              <Form.TextArea
-                label="详细信息"
-                placeholder="请填写您的健康疑问，描述越详细，医生们越容易解答。示例: 鼻子老是流鼻血，是怎么回事？慢性鼻窦炎的危害有哪些？该如何治疗？"
-                value={newQuestion.content}
-                onChange={(e) => handleChange(e.target.value, "content")}
-              />
-
-              <Divider />
-              <Title>添加照片</Title>
-              <PicRow>
-                {newQuestion &&
-                  newQuestion.files &&
-                  newQuestion.files[0] &&
-                  newQuestion.files.map((file, i) => {
-                    return (
-                      <div style={{ position: "relative" }}>
-                        <CloseIcon
-                          onClick={() => {
-                            let newQuestionClone = JSON.parse(
-                              JSON.stringify(newQuestion)
-                            );
-                            let files = newQuestion.files;
-                            files.splice(i, 1);
-                            console.log("close", files);
-                            setNewQuestion((prev) => ({ ...prev, files }));
-                          }}
-                        >
-                          <Icon name="times" />
-                        </CloseIcon>
-
-                        <ReviewImage
-                          src={file.preview}
-                          key={i}
-                          onClick={() => {
-                            setOpenImage(URL.createObjectURL(file));
-                            setOpen(true);
-                          }}
-                        />
-                      </div>
-                    );
-                  })}
-                <div {...getRootProps()}>
-                  <input {...getInputProps()} />
-                  {isDragActive ? (
-                    <ReviewImage src="/addPhotoBox-blue.JPG" />
-                  ) : (
-                    <ReviewImage src="/addPhotoBox.JPG" />
-                  )}
-                </div>
-              </PicRow>
-              <Button type="submit">提交咨询</Button>
-            </Form>
-            <br />
+            <QuestionForm setOpenQuestion={setOpenQuestion} answers={answers} />
           </>
         )}
+
         {answers &&
           answers.map((item, i) => {
             return (
@@ -314,7 +192,6 @@ const Button = styled.button`
   width: 100px;
   cursor: pointer;
   border: none;
-
 `;
 const AnswerContainer = styled.div``;
 

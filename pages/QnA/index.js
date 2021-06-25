@@ -1,28 +1,31 @@
 import styled from "styled-components";
 import Topic from "../../components/Topic";
-import ClinicList from "../../components/ClinicList";
-import Clinics from "../../components/Clinics";
+import DoctorAnswer from "../../components/DoctorAnswer";
+import FeaturedDoctor from "../../components/FeaturedDoctor";
 
-const Clinic = () => {
+const QnA = () => {
   return (
-    <>
+    <Container>
       <Wrapper>
-        <Nav>{"健康 > 在线问诊 > 保德仁中医诊所 > 石志坚"}</Nav>
+        <Nav>{"健康 > 中医 > 中医咨询"}</Nav>
       </Wrapper>
 
       <TwoCol>
-        <Topic title="中医机构列表与介绍" flex={2} noAll>
-          <ClinicList />
+        <Topic title="中医咨询" flex={2} noAll>
+          <DoctorAnswer />
         </Topic>
 
-        <Topic title="推荐中医诊所" flex={1} fixedHeight noAll>
-          <Clinics column />
+        <Topic title="推荐专家" flex={1} fixedHeight>
+          <FeaturedDoctor />
         </Topic>
       </TwoCol>
-    </>
+    </Container>
   );
 };
 
+const Container = styled.div`
+  padding: 0 20px 0 20px;
+`;
 const Wrapper = styled.div`
   display: flex;
   flex-flow: row nowrap;
@@ -46,4 +49,4 @@ const TwoCol = styled.div`
   margin: 0 auto;
 `;
 
-export default Clinic;
+export default QnA;

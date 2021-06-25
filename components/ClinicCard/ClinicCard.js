@@ -1,16 +1,39 @@
-import { useRouter } from 'next/router';
-import styled from 'styled-components';
-import { Icon } from 'semantic-ui-react';
+import { useRouter } from "next/router";
+import styled from "styled-components";
+import { Icon } from "semantic-ui-react";
+import { useRecoilState } from "recoil";
+import {
+  clinics as clinicsAtom,
+  selectedClinic as selectedClinicAtom,
+} from "../../data/atoms";
 
-const ClinicCard = ( {item} ) => {
+const ClinicCard = ({ item }) => {
+  const router = useRouter();
+  const [clinics] = useRecoilState(clinicsAtom);
+  const [selectedClinic, setSelectedClinic] = useRecoilState(
+    selectedClinicAtom
+  );
+
+  const viewClinic = () => {
+    console.log("clinic item", item);
+    setSelectedClinic(item);
+    router.push("/clinic/" + item.name + "/" + item.id);
+  };
 
   return (
-    <CardContainer>
-        <Pic src={item.pic} />
+    <CardContainer
+      onClick={() => {
+        viewClinic();
+      }}
+    >
+      <Pic src={item.pic} />
       <Wrapper>
         <Name>{item.name}</Name>
         <Lang>{item.lang}</Lang>
-        <Tel><Icon name="phone" />&nbsp;&nbsp;{item.tel}</Tel>
+        <Tel>
+          <Icon name="phone" />
+          &nbsp;&nbsp;{item.tel}
+        </Tel>
       </Wrapper>
     </CardContainer>
   );

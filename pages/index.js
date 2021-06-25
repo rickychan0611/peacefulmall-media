@@ -52,10 +52,10 @@ const Home = () => {
 
       <Wrapper>
         <TwoColRow>
-          <Topic title="中医咨询" flex={2}>
+          <Topic title="中医咨询" flex={2} path="/QnA">
             <QnA />
           </Topic>
-          <Topic title="大家都在问" flex={1}>
+          <Topic title="大家都在问" flex={1}  path="/questions">
             <QuestionCards />
           </Topic>
         </TwoColRow>
