@@ -11,7 +11,7 @@ const Topic = ({
   fixedHeight,
   path,
   darkMode,
-  noAll
+  noAll,
 }) => {
   return (
     <>
@@ -67,6 +67,7 @@ const All = styled.div`
   color: #30aabc;
   margin-left: 20px;
   color: ${(p) => p.darkMode && "white"};
+  cursor: pointer;
 `;
 
 export default Topic;

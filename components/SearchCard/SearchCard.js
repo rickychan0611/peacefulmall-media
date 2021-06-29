@@ -2,13 +2,14 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import { Divider, Input, Icon, Header } from "semantic-ui-react";
 import { useRecoilState } from "recoil";
+import CardContainer from "../CardContainer";
 
 const SearchCard = () => {
   const router = useRouter();
 
   return (
-    <Wrapper>
-      <Divider />
+    <>
+      <CardContainer>
       <SearchInputWrapper>
         <Icon name="search" />
         <SearchInput placeholder="输入名称" />
@@ -17,7 +18,10 @@ const SearchCard = () => {
         <Icon name="search" />
         搜索
       </SearchButton>
-      <Divider />
+      </CardContainer>
+      <div style={{marginTop: 20}}></div>
+
+      <CardContainer>
       <Header>热门中草药</Header>
       <TagWrapper>
         <Tag>八角莲</Tag>
@@ -27,7 +31,8 @@ const SearchCard = () => {
         <Tag>附子</Tag>
         <Tag>白芨</Tag>
       </TagWrapper>
-    </Wrapper>
+      </CardContainer>
+    </>
   );
 };
 

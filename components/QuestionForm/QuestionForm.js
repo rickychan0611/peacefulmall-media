@@ -33,7 +33,7 @@ const QuestionForm = ({ setOpenQuestion, answers, setAnswers }) => {
   });
 
   const handleChange = (value, name) => {
-    setNewQuestion((prev) => ({ ...prev, [name]: value, id: answers.length }));
+    setNewQuestion((prev) => ({ ...prev, [name]: value, id: 1}));
   };
 
   const handleQuestionSubmit = () => {
@@ -71,8 +71,9 @@ const QuestionForm = ({ setOpenQuestion, answers, setAnswers }) => {
         <Modal.Actions>
           <Button
             onClick={() => {
-              setOpenQuestion(false);
+              // setOpenQuestion(false);
               setOpenModal(false);
+              router.back()
             }}
           >
             OK
@@ -93,8 +94,8 @@ const QuestionForm = ({ setOpenQuestion, answers, setAnswers }) => {
           placeholder="请填写您的健康疑问，描述越详细，医生们越容易解答。示例: 鼻子老是流鼻血，是怎么回事？慢性鼻窦炎的危害有哪些？该如何治疗？"
           value={newQuestion.content}
           onChange={(e) => handleChange(e.target.value, "content")}
+          rows={10}
         />
-
         <Divider />
         <Title>添加照片</Title>
         <PicRow>

@@ -34,7 +34,7 @@ let answerData = [
   },
 ];
 
-const DoctorAnswer = () => {
+const Herbal = () => {
   const [answers, setAnswers] = useState(answerData);
   const [openQuestion, setOpenQuestion] = useState(false);
 
@@ -200,4 +200,4 @@ const Answer = styled.div`
   line-height: 24px;
   margin-bottom: 15px;
 `;
-export default DoctorAnswer;
+export default Herbal;

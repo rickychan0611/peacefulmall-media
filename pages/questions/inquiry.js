@@ -1,30 +1,25 @@
 import styled from "styled-components";
 import Topic from "../../components/Topic";
-import DoctorAnswer from "../../components/DoctorAnswer";
 import FeaturedDoctor from "../../components/FeaturedDoctor";
-import QuestionBanner from "../../components/QuestionBanner";
+import QuestionForm from "../../components/QuestionForm";
+import TwoColPage from "../../components/TwoColPage";
+import { Divider, Form, Icon, Image, Modal } from "semantic-ui-react";
 
 const questions = () => {
   return (
     <>
-      <Container>
-        <Wrapper>
-          <Nav>{"健康 > 中医 > 大家都在问"}</Nav>
-        </Wrapper>
-
-        <QuestionBanner />
-        <br />
-
-        <TwoCol>
-          <Topic title="和平特约中医咨询" flex={2} noAll>
-            <DoctorAnswer />
+      <TwoColPage nav={"健康 > 大家都在问 > 在线问诊"}>
+        <>
+          <Divider />
+          <Topic title="和平驻场特约中医咨询" flex={2} fixedHeight noAll>
+            <QuestionForm />
           </Topic>
+        </>
 
-          <Topic title="推荐专家" flex={1} fixedHeight noAll>
-            <FeaturedDoctor />
-          </Topic>
-        </TwoCol>
-      </Container>
+        <Topic title="推荐专家" flex={1} fixedHeight noAll>
+          <FeaturedDoctor />
+        </Topic>
+      </TwoColPage>
     </>
   );
 };
@@ -36,7 +31,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  gap: 20px;
+  /* gap: 20px; */
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
@@ -48,11 +43,12 @@ const Nav = styled.div`
 const TwoCol = styled.div`
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  justify-content: center;
   gap: 20px;
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
+  padding-left: 0;
 `;
 
 export default questions;

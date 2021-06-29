@@ -25,7 +25,9 @@ const FeaturedDoctor = () => {
 
                   <Content className="clamp2">{item.goodAt}</Content>
                   <br />
-                  <Button><Icon name="chat"/> 免费咨询</Button>
+                  <Button onClick={() => {
+                    router.push('/doctor/' + item.name + "/" + item.id)
+                    }}><Icon name="chat"/> 免费咨询</Button>
                 </div>
               </Col3>
             </Card>

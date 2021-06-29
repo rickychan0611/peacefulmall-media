@@ -63,27 +63,27 @@ const Home = () => {
 
       <Wrapper>
         <TwoColRow>
-          <Topic title="特色中医" flex={2} cats={special}>
+          <Topic title="特色中医" flex={2} cats={special} path="/c_med_featured">
             <BlogList />
           </Topic>
-          <Topic title="中医常识" flex={1}>
+          <Topic title="中医常识" flex={1} path="/c_med_knowledge">
             <QuestionCards />
           </Topic>
         </TwoColRow>
       </Wrapper>
 
       <Wrapper>
-        <Topic title="视频课程" flex={1}>
+        <Topic title="视频课程" flex={1} path="/video_tutorial">
           <VideoCards />
         </Topic>
       </Wrapper>
 
       <Wrapper>
         <TwoColRow>
-          <Topic title="中草药百科" flex={2}>
+          <Topic title="中草药百科" flex={2} path="/herbal_wiki">
             <HerbCards />
           </Topic>
-          <Topic title="中药房" flex={1}>
+          <Topic title="中药房" flex={1} path="/herbal_wiki"> 
             <SearchCard />
           </Topic>
         </TwoColRow>
