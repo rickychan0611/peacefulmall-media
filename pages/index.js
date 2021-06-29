@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { Container } from "semantic-ui-react";
+import { Divider } from "semantic-ui-react";
 import Clinics from "../components/Clinics";
 import { Icon } from "semantic-ui-react";
 import Topic from "../components/Topic";
@@ -34,17 +34,12 @@ const Home = () => {
       </Wrapper>
 
       <Wrapper>
-        <Topic
-          title="在线问诊"
-          flex={1}
-          cats={doctorCats}
-          path="/doctor"
-        >
+        <Topic title="在线问诊" flex={1} cats={doctorCats} path="/doctor">
           <OnlineDoctors />
         </Topic>
       </Wrapper>
 
-      <Wrapper >
+      <Wrapper>
         <Topic title="中医诊所" flex={1} path="/clinic">
           <Clinics />
         </Topic>
@@ -55,7 +50,7 @@ const Home = () => {
           <Topic title="中医咨询" flex={2} path="/QnA">
             <QnA />
           </Topic>
-          <Topic title="大家都在问" flex={1}  path="/questions">
+          <Topic title="大家都在问" flex={1} path="/questions">
             <QuestionCards />
           </Topic>
         </TwoColRow>
@@ -63,7 +58,12 @@ const Home = () => {
 
       <Wrapper>
         <TwoColRow>
-          <Topic title="特色中医" flex={2} cats={special} path="/c_med_featured">
+          <Topic
+            title="特色中医"
+            flex={2}
+            cats={special}
+            path="/c_med_featured"
+          >
             <BlogList />
           </Topic>
           <Topic title="中医常识" flex={1} path="/c_med_knowledge">
@@ -81,9 +81,10 @@ const Home = () => {
       <Wrapper>
         <TwoColRow>
           <Topic title="中草药百科" flex={2} path="/herbal_wiki">
+            <Divider />
             <HerbCards />
           </Topic>
-          <Topic title="中药房" flex={1} path="/herbal_wiki"> 
+          <Topic title="中药房" flex={1} path="/herbal_wiki">
             <SearchCard />
           </Topic>
         </TwoColRow>

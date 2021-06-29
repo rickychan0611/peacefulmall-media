@@ -1,8 +1,35 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
+import herbsData from "./herbs";
 
 export const openSideMenu = atom({
   key: "openSideMenu",
   default: false,
+});
+
+export const herbsD = atom({
+  key: "herbs",
+  default: herbsData,
+});
+
+export const herbKeyword = atom({
+  key: "herbKeyword",
+  default: "",
+});
+
+export const filteredHerbs = selector({
+  key: "filteredHerbs",
+  get: ({ get }) => {
+    const herbs = get(herbsD);
+    const keyword = get(herbKeyword);
+
+    if (!keyword) {
+      return null
+    } else {
+      return herbs.filter((item) => {
+        return item.title.includes(keyword);
+      });
+    }
+  },
 });
 
 export const selectedClinic = atom({
@@ -51,7 +78,8 @@ export const clinics = atom({
       lang: "国语 / 粤语 / 英语",
       tel: "604-831-2698",
       email: "vancouverbroadgreen@gmail.com",
-      description: "保德仁中医馆位于Burnaby,是一所集治疗,养生,美容于一体的中医诊所。主治医生均具有三十至四十年中医针灸及中西医临床经验，并具有中医最高学历及最高级临床职称，针灸、推拿手法超群。擅长治疗神经、肌肉、骨伤等疑难痛症及内、外、妇、儿、皮肤病等。特效针灸美容，美体，产后康复。美容护肤项目：基础护理，小气泡深层清洁，水氧补湿，面部提升收紧及去黄紧致。激光脱毛，无痛祛痣肉疣。 "
+      description:
+        "保德仁中医馆位于Burnaby,是一所集治疗,养生,美容于一体的中医诊所。主治医生均具有三十至四十年中医针灸及中西医临床经验，并具有中医最高学历及最高级临床职称，针灸、推拿手法超群。擅长治疗神经、肌肉、骨伤等疑难痛症及内、外、妇、儿、皮肤病等。特效针灸美容，美体，产后康复。美容护肤项目：基础护理，小气泡深层清洁，水氧补湿，面部提升收紧及去黄紧致。激光脱毛，无痛祛痣肉疣。 ",
     },
   ],
 });
