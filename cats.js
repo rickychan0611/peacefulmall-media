@@ -6,11 +6,14 @@ const cats = [
       {
         name: '中医诊疗',
         pages: [
-          { name: '在线问诊', url: 'http://www.google.ca' },
-          { name: '各科医生列表与介绍', url: 'http://www.google.ca' },
-          { name: '医生预约', url: 'http://www.google.ca' },
-          { name: '中医机构列表与介绍', url: 'http://www.google.ca' },
-          { name: '中央药房', url: 'http://www.google.ca' }
+          { name: '在线问诊', url: '/doctor' },
+          { name: '中医机构列表与介绍', url: '/clinic' },
+          { name: '中医咨询', url: '/QnA' },
+          { name: '中医常识', url: '/c_med_featured' },
+          { name: '特色中医', url: '/c_med_knowledge' },
+          { name: '视频课程', url: '/video_tutorial' },
+          { name: '视频课程', url: '/video_tutorial' },
+          { name: '中草药百科', url: '/herbal_wiki' },
         ]
       },
       {

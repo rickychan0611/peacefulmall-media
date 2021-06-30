@@ -1,28 +1,36 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-import cats from '../../cats';
-import { Icon } from 'semantic-ui-react';
+import { useState } from "react";
+import styled from "styled-components";
+import cats from "../../cats";
+import { Icon } from "semantic-ui-react";
+import { useRouter } from "next/router";
 
 const CatBanner = () => {
   const [subCats, setSubCats] = useState();
-  
+  const [openCats, setOpenSubCats] = useState(false);
+  const router = useRouter();
+
   return (
     <TopBannerRow>
       <CatMenuContainer>
         {cats.map((item, i) => {
-          console.log("subCats" , item)
+          console.log("subCats", item);
           return (
             <CatMenu
               key={i}
               style={{ marginBottom: i === cats.length - 1 && 0 }}
-              onClick={() => {
-                subCats === item ? setSubCats() : setSubCats(item);
-              }}>
+              onMouseEnter={() => {
+                setSubCats(item);
+                setOpenSubCats(true)
+              }}
+              onMouseLeave={() => {
+                setOpenSubCats(false)
+              }}
+            >
               <Title>{item.title}</Title>
               <div>
-                {subCats && subCats.id === item.id ? (
+                {openCats && subCats.id === item.id ? (
                   <Icon name="minus" />
-                ) : ( 
+                ) : (
                   <Icon name="chevron right" />
                 )}
               </div>
@@ -31,21 +39,29 @@ const CatBanner = () => {
         })}
       </CatMenuContainer>
 
-      {subCats ? (
-        <SubCatContainer>
+      {openCats ? (
+        <SubCatWrapper>
+        <SubCatContainer 
+        onMouseEnter={() => {
+          setOpenSubCats(true)
+        }}
+        onMouseLeave={() => {
+          setOpenSubCats(false)
+        }}>
           {subCats.subCats.map((subCat) => {
             return (
               <Row>
                 <SubTitle>{subCat.name}</SubTitle>
                 <SubList>
                   {subCat.pages.map((item) => (
-                    <SubListName>{item.name}</SubListName>
+                    <SubListName onClick={()=>router.push(item.url)}>{item.name}</SubListName>
                   ))}
                 </SubList>
               </Row>
             );
           })}
         </SubCatContainer>
+        </SubCatWrapper>
       ) : (
         <BannerContainer>
           <BannerImg src="/banner-1.png" />
@@ -86,6 +102,11 @@ const TopBannerRow = styled.div`
   max-width: 1100px;
   margin: 0 auto;
 `;
+const SubCatWrapper = styled.div`
+  position: absolute;
+  margin-left: 240px;
+  min-width: 860px;
+`;
 const CatMenuContainer = styled.div`
   display: flex;
   flex-flow: column nowrap;
@@ -104,7 +125,6 @@ const CatMenu = styled.div`
   border-bottom: 1px solid #dad9d9;
   padding: 0 8px 0 24px;
   cursor: pointer;
-
 `;
 const SubCatContainer = styled.div`
   position: relative;

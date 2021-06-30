@@ -44,6 +44,7 @@ const Container = styled.div`
   background-color: white;
 `;
 const NameWrapper = styled.div`
+cursor: pointer;
   width: 100%;
   padding: 15px 24px 15px 24px;
   border-bottom: ${(p) => (p.lastItem ? "none" : "1px solid #e1dfdf")};
