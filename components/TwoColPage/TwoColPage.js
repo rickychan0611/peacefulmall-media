@@ -3,16 +3,16 @@ import styled from "styled-components";
 const TwoColPage = ({ children, nav }) => {
   return (
     <>
-      <Wrapper>
+      <NavWrapper>
         <Nav>{nav}</Nav>
-      </Wrapper>
+      </NavWrapper>
 
       <TwoCol>{children}</TwoCol>
     </>
   );
 };
 
-const Wrapper = styled.div`
+const NavWrapper = styled.div`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;

@@ -6,7 +6,7 @@ import FeaturedDoctor from "../../components/FeaturedDoctor";
 const Doctor = () => {
   return (
     <TwoCol>
-      <Topic title="在线问诊" flex={2}>
+      <Topic title="在线问诊" flex={2} noAll>
         <DoctorList />
       </Topic>
 

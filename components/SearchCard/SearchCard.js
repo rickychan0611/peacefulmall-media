@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Divider, Input, Icon, Header } from "semantic-ui-react";
 import { useRecoilState } from "recoil";
 import { filteredHerbs as filteredHerbsAtom, herbKeyword as herbKeywordAtom } from '../../data/atoms'
-import CardContainer from "../CardContainer";
 
 const keywords = ["八角", "八角枫根", "人参", "巴戟天", "附子", "白芨"];
 
