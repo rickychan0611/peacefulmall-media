@@ -21,10 +21,10 @@ const TopBar_Desktop = ({ locales, changeLocale }) => {
       {openDropdownMenu && <Dimmer state={openDropdownMenu} close={setOpenDropdownMenu} />}
       <Row style={{ cursor: 'pointer' }} onClick={() => router.push('/')}>
         <Image size="mini" src="/logo-p.png" />
-        <h3 style={{ color: '#e19f9d', margin: 0, marginLeft: 10 }}>
+        <h3 style={{ color: '#e46964', margin: 0, marginLeft: 10 }}>
           {t('title')}
           <span style={{ margin: '0 10px 0 10px', color: '#1ec5af' }}> | </span>
-          <span style={{ color: '#1ec5af' }}> {t('subTitle')}</span>
+          <span style={{ color: '#3e70ce' }}> {t('subTitle')}</span>
         </h3>
       </Row>
       <Row>

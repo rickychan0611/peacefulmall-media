@@ -6,6 +6,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { RecoilRoot, useRecoilState } from "recoil";
 import TopNav from "../components/TopNav";
 import TopBar from "../components/TopBar";
+import NavBar from "../components/NavBar";
 import { useIsDesktop } from "../util/useScreenSize";
 
 function MyApp({ Component, pageProps }) {
@@ -15,13 +16,13 @@ function MyApp({ Component, pageProps }) {
     <ThemeProvider theme={theme}>
       <RecoilRoot>
         <Head>
-          <title>Peaceful Mall - Health</title>
+          <title>Peaceful Mall - Media</title>
           <meta
             httpEquiv="Content-Security-Policy"
             content="upgrade-insecure-requests"
           />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
           <link
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
             rel="stylesheet"
@@ -30,6 +31,7 @@ function MyApp({ Component, pageProps }) {
         <Container>
           {isDesktop && <TopNav />}
           <TopBar />
+          {isDesktop && <NavBar />}
           <Wrapper isDesktop={isDesktop}>
             <Component {...pageProps} />
           </Wrapper>
@@ -47,7 +49,7 @@ const Container = styled.div`
 `;
 const Wrapper = styled.div`
   width: 100%;
-  padding-top: ${(p) => (p.isDesktop ? "110px" : "80px")};
+  padding-top: ${(p) => (p.isDesktop ? "130px" : "80px")};
   padding-bottom: 60px;
   margin: 0 auto;
 `;

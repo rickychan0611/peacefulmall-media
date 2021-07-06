@@ -13,6 +13,8 @@ import VideoCards from "../components/VideoCards";
 import HerbCards from "../components/HerbCards";
 import SearchCard from "../components/SearchCard";
 import MaxWidth from "../components/MaxWidth";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+var Carousel = require('react-responsive-carousel').Carousel;
 
 const doctorCats = [
   "儿科",
@@ -30,7 +32,20 @@ const Home = () => {
     <>
       <br />
       <Wrapper>
-        <CatBanner />
+        <Carousel>
+          <div>
+            <img src="news1.webp" />
+            <p className="legend">Legend 1</p>
+          </div>
+          <div>
+          <img src="news2.webp" />
+            <p className="legend">Legend 2</p>
+          </div>
+          <div>
+          <img src="news3.webp" />
+            <p className="legend">Legend 3</p>
+          </div>
+        </Carousel>
       </Wrapper>
 
       <Wrapper>
