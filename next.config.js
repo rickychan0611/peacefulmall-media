@@ -1,15 +1,16 @@
-const nextTranslate = require('next-translate')
-
-// module.exports = nextTranslate()
+const nextTranslate = require('next-translate');
 
 module.exports = nextTranslate({
   experimental: {
     scrollRestoration: true
+  },
+  future: {
+    webpack5: false
+  },
+  images: {
+    domains: ['admin.peacefulmallrestaurant.com']
+  },
+  eslint: {
+    ignoreDuringBuilds: true
   }
 })
-
-// module.exports = {
-//   future: {
-//     webpack5: false,
-//   },
-// }
