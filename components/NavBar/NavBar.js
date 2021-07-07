@@ -83,13 +83,12 @@ const NavBar = () => {
 
   return (
     <>
-      {/* <Divider></Divider> */}
       <Container>
         <Row>
           {cats.map((cat, i) => {
             return (
               <Cat
-              color={cat.color}
+                color={cat.color}
                 onClick={() => {
                   router.push(cat.link);
                 }}
@@ -100,6 +99,8 @@ const NavBar = () => {
             );
           })}
         </Row>
+        {/* <Divider style={{ top: 100 }} /> */}
+        {/* <Divider style={{ top: 138 }} /> */}
       </Container>
     </>
   );
@@ -126,7 +127,7 @@ const Container = styled.div`
   width: 100%;
   position: fixed;
   top: 102px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .6);
   background: linear-gradient(169deg, #6a81ca 0%, #39416e 45%);
   /* background: #4a5a75 */
   `;
