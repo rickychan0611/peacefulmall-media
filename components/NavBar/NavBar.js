@@ -114,7 +114,7 @@ const Divider = styled.div`
   width: 100%;
   position: fixed;
   top: 100px;
-  background: linear-gradient(169deg, #c0c0c0 0%, #530daf 45%);
+  background: linear-gradient(139deg, rgba(87,106,142,1) 0%, rgba(27,24,42,1) 54%);
   height: 3px;
 `;
 const Container = styled.div`
@@ -126,8 +126,8 @@ const Container = styled.div`
   width: 100%;
   position: fixed;
   top: 102px;
-  box-shadow: 0 5px 5px #e6e4ee;
-  background: linear-gradient(169deg, rgba(97,94,182,1) 0%, rgba(82,79,133,1) 45%);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(169deg, #6a81ca 0%, #39416e 45%);
   /* background: #4a5a75 */
   `;
 

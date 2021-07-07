@@ -12,9 +12,7 @@ import BlogList from "../components/BlogList";
 import VideoCards from "../components/VideoCards";
 import HerbCards from "../components/HerbCards";
 import SearchCard from "../components/SearchCard";
-import MaxWidth from "../components/MaxWidth";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-var Carousel = require('react-responsive-carousel').Carousel;
+import SlideShow from "../components/SlideShow";
 
 const doctorCats = [
   "儿科",
@@ -31,23 +29,9 @@ const Home = () => {
   return (
     <>
       <br />
-      <Wrapper>
-        <Carousel>
-          <div>
-            <img src="news1.webp" />
-            <p className="legend">Legend 1</p>
-          </div>
-          <div>
-          <img src="news2.webp" />
-            <p className="legend">Legend 2</p>
-          </div>
-          <div>
-          <img src="news3.webp" />
-            <p className="legend">Legend 3</p>
-          </div>
-        </Carousel>
-      </Wrapper>
-
+      <SlideShowWrapper>
+        <SlideShow />
+      </SlideShowWrapper>
       <Wrapper>
         <Topic title="在线问诊" flex={1} cats={doctorCats} path="/doctor">
           <OnlineDoctors />
@@ -108,6 +92,10 @@ const Home = () => {
   );
 };
 
+const SlideShowWrapper = styled.div`
+background: linear-gradient(139deg, rgba(87,106,142,1) 0%, rgba(27,24,42,1) 54%);
+
+`;
 const Wrapper = styled.div`
   padding: 10px;
   background-color: ${(p) => p.backgroundColor};

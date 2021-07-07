@@ -49,7 +49,7 @@ const Container = styled.div`
 `;
 const Wrapper = styled.div`
   width: 100%;
-  padding-top: ${(p) => (p.isDesktop ? "130px" : "80px")};
+  padding-top: ${(p) => (p.isDesktop ? "120px" : "80px")};
   padding-bottom: 60px;
   margin: 0 auto;
 `;
