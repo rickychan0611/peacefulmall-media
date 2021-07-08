@@ -13,11 +13,13 @@ const Topic = ({
   darkMode,
   noAll,
 }) => {
+
+
   return (
     <>
       <CardContainer flex={flex} fixedHeight={fixedHeight}>
         <Row>
-          <Title darkMode={darkMode}>{title}</Title>
+          <Title darkMode={darkMode} >{title}</Title>
           <CatWrapper>
             {cats &&
               cats.map((cat) => <CatName darkMode={darkMode}>{cat}</CatName>)}
@@ -56,10 +58,11 @@ const Row = styled.div`
   gap: 10px;
 `;
 const Title = styled.div`
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 500;
   margin-right: 10px;
   color: ${(p) => p.darkMode && "white"};
+  padding-left : 10px;
 `;
 const All = styled.div`
   font-weight: 500;

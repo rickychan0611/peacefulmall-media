@@ -2,84 +2,69 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { Icon } from 'semantic-ui-react';
-import { user as userAtom } from "../../data/userAtom";
+import { selectedCat as selectedCatAtom } from "../../data/atoms";
 import useTranslation from "next-translate/useTranslation";
-import setLanguage from "next-translate/setLanguage";
 
 const cats = [
   {
     name: "本地",
-    link: "",
+    link: "/articles/本地",
     icon: "",
+    color: "#c26f03"
   },
   {
     name: "加国",
     link: "",
     icon: "",
+    color: "#f52121"
   },
   {
     name: "國際",
     link: "",
     icon: "",
+    color: "#165fd4"
   },
   {
     name: "社区",
     link: "",
     icon: "",
+    color: "#4b8524"
   },
   {
     name: "體育",
     link: "",
     icon: "",
+    color: "#bb52be"
   },
   {
     name: "影視",
     link: "",
     icon: "",
+    color: "#2935df"
   },
   {
     name: "生活",
     link: "",
     icon: "",
+    color: "#06a5b1"
   },
   {
     name: "潮流",
     link: "",
     icon: "",
+    color: "#b3008c"
   },
   {
     name: "視像",
     link: "",
     icon: "youtube",
+    color: "#ce5c5c"
   },
 ];
-
-export const locales = [
-  {
-    key: "en",
-    text: "ENG",
-    value: "en",
-  },
-  {
-    key: "zh-CN",
-    text: "简体",
-    value: "zh-CN",
-  },
-];
-
-export const changeLocale = async (e, { value }) => {
-  console.log(value);
-  await setLanguage(value);
-  const date = new Date();
-  const expireMs = 100 * 365 * 24 * 60 * 60 * 1000; // 100 days
-  date.setTime(date.getTime() + expireMs);
-  document.cookie = `NEXT_LOCALE=${value};expires=${date.toUTCString()};path=/`;
-};
 
 const NavBar = () => {
   const router = useRouter();
-  const [user, setUser] = useRecoilState(userAtom);
-  const { t } = useTranslation("home");
+  const [selectedCat, setSelectedCat] = useRecoilState(selectedCatAtom);
 
   return (
     <>
@@ -88,9 +73,11 @@ const NavBar = () => {
           {cats.map((cat, i) => {
             return (
               <Cat
+                selectedColor={selectedCat && selectedCat.name === cat.name && selectedCat.color}
                 color={cat.color}
                 onClick={() => {
-                  router.push(cat.link);
+                  setSelectedCat(cat)
+                  router.push("/articles/" + cat.name);
                 }}
               >
                 {cat.icon && <Icon name={cat.icon} />}
@@ -99,25 +86,11 @@ const NavBar = () => {
             );
           })}
         </Row>
-        {/* <Divider style={{ top: 100 }} /> */}
-        {/* <Divider style={{ top: 138 }} /> */}
       </Container>
     </>
   );
 };
 
-const Divider = styled.div`
-  z-index: 10001;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  position: fixed;
-  top: 100px;
-  background: linear-gradient(139deg, rgba(87,106,142,1) 0%, rgba(27,24,42,1) 54%);
-  height: 3px;
-`;
 const Container = styled.div`
   z-index: 10000;
   display: flex;
@@ -129,7 +102,6 @@ const Container = styled.div`
   top: 102px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, .6);
   background: linear-gradient(169deg, #6a81ca 0%, #39416e 45%);
-  /* background: #4a5a75 */
   `;
 
 const Cat = styled.div`
@@ -139,9 +111,9 @@ const Cat = styled.div`
   cursor: pointer;
   color: white;
   padding: 9px 20px;
+  background-color: ${p => p.selectedColor};
   :hover {
-    background-color: #7277c4;;
-    /* color: #7277c4; */
+    background-color: ${p => p.color};
   }
 `;
 const Row = styled.div`

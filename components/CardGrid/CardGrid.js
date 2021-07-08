@@ -1,22 +1,28 @@
-import { useState } from "react";
-import { useRouter } from "next/router";
 import styled from "styled-components";
-import { Divider } from "semantic-ui-react";
-import { useRecoilState } from "recoil";
-import { openSideMenu as openSideMenuAtom } from "../../data/atoms.js";
+import { useIsMobile } from '../../util/useScreenSize';
 import getColor from '../../util/getColor';
-import feeds from '../../data/feeds';
+import { useRecoilState } from "recoil";
+import { selectedCat as selectedCatAtom } from "../../data/atoms";
+import { selectedArticle as selectedArticleAtom } from '../../data/atoms';
+import { useRouter } from "next/router";
 
-const BlogSideNav = ({ data, setTitle }) => {
+const CardGrid = ({ feeds }) => {
+  const isMobile = useIsMobile();
+  const [selectedCat, setSelectedCat] = useRecoilState(selectedCatAtom);
+  const [ selectedArticle, setSelectedArticle ] = useRecoilState(selectedArticleAtom);
+
   const router = useRouter();
-  const [openSideMenu, setOpenSideMenu] = useRecoilState(openSideMenuAtom);
-  const [selected, setSelected] = useState(data.pages[0]);
 
   return (
-    <Container>
+    <Container isMobile={isMobile}>
       {feeds.map((item, i) => {
         return (
-          <Card key={i}>
+          <Card key={i}
+            onClick={() => {
+              setSelectedCat({name: item.cat, color: getColor(item.cat)})
+              setSelectedArticle(item)
+              router.push("/articles/" + item.cat + "/" + item.title.replace(/\s|%/g, '-'));
+            }}>
             <Label getColor={getColor(item.cat)}>{item.cat}</Label>
             <Img src={item.photo} />
             <Bar getColor={getColor(item.cat)} />
@@ -31,15 +37,11 @@ const BlogSideNav = ({ data, setTitle }) => {
 };
 
 const Container = styled.div`
-  flex: 1;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  background-color: white;
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
+  gap: 26px;
+  margin-top: 20px;
+  padding : ${p => p.isMobile ? "0px" : "0 10px"};
 `;
 const Bar = styled.div`
   width: 100%;
@@ -52,6 +54,7 @@ const Card = styled.div`
   flex-flow: column nowrap;
   width: 100%;
   box-shadow: 0 0 20px rgba(0,0,0,.2);
+  cursor: pointer;
 `;
 const Label = styled.div`
   position: absolute;
@@ -79,4 +82,5 @@ font-size: 16px;
 color: black;
 /* color: white; */
 `;
-export default BlogSideNav;
+
+export default CardGrid;
