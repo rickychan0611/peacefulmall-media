@@ -15,16 +15,16 @@ const CardGrid = ({ feeds }) => {
 
   return (
     <Container isMobile={isMobile}>
-      {feeds.map((item, i) => {
+      {feeds && feeds.map((item, i) => {
         return (
           <Card key={i}
             onClick={() => {
               setSelectedCat({name: item.cat, color: getColor(item.cat)})
               setSelectedArticle(item)
-              router.push("/articles/" + item.cat + "/" + item.title.replace(/\s|%/g, '-'));
+              router.push("/articles/" + item.id + "/" + item.category.name + "/" + item.title.replace(/\s|%/g, '-'));
             }}>
-            <Label getColor={getColor(item.cat)}>{item.cat}</Label>
-            <Img src={item.photo} />
+            {item.category && <Label getColor={getColor(item.category.name)}>{item.category.name}</Label>}
+            <Img src={process.env.NEXT_PUBLIC_HOST_URL + item.cover_photo.url} />
             <Bar getColor={getColor(item.cat)} />
             <TitleWrapper>
               <Title className="clamp2">{item.title}</Title>

@@ -1,12 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Icon } from "semantic-ui-react";
 import Topic from "../components/Topic";
 import SlideShow from "../components/SlideShow";
 import CardGrid from "../components/CardGrid";
-import feeds from '../data/feeds';
+import axios from 'axios';
 
 const Home = () => {
+
+  const [feeds, setFeeds] = useState();
+
+  useEffect(async () => {
+    try {const getArticles = await axios.get(
+      process.env.NEXT_PUBLIC_CORS + process.env.NEXT_PUBLIC_HOST_URL + '/articles'
+      ,{ crossdomain: true }
+    )
+    console.log("getArticles", getArticles.data)
+    setFeeds(getArticles.data)}
+    catch (err) {
+      console.log("err", err)
+    }
+  }, [])
+
   return (
     <>
       <br />
@@ -15,7 +30,7 @@ const Home = () => {
       </SlideShowWrapper>
       <Wrapper >
         <Topic title="最新动态" flex={1} noAll>
-          <CardGrid feeds={feeds}/>
+          <CardGrid feeds={feeds} />
         </Topic>
       </Wrapper>
     </>

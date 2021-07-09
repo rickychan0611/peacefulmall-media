@@ -1,5 +1,4 @@
 const getColor = (str) => {
-    console.log(str)
     return (
         str === "本地" ? "#c26f03" :
         str === "加国" ? "#f52121" :
